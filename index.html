@@ -264,21 +264,349 @@
             margin-bottom: 10px;
             line-height: 1.6;
         }
+
+        /* 零件悬停提示框 */
+        .part-tooltip {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            pointer-events: none;
+            z-index: 1000;
+            max-width: 320px;
+            opacity: 0;
+            transform: translateY(8px) scale(0.96);
+            transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+        .part-tooltip.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .tooltip-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .tooltip-icon {
+            font-size: 20px;
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+            color: #fff;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .tooltip-titles h4 {
+            font-size: 14px;
+            color: #1a1a2e;
+            margin-bottom: 2px;
+        }
+        .tooltip-titles p {
+            font-size: 10px;
+            color: #888;
+        }
+        .tooltip-image {
+            width: 100%;
+            height: 140px;
+            background: #f5f7fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tooltip-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .tooltip-desc {
+            font-size: 11px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .tooltip-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 10px;
+            background: #f7f9fc;
+            padding: 8px 10px;
+            border-radius: 6px;
+        }
+        .tooltip-specs .label {
+            font-size: 10px;
+            color: #888;
+        }
+        .tooltip-specs .value {
+            font-size: 11px;
+            color: #1a1a2e;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* 整车展示模态框 */
+        .car-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 20, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+        .car-modal.show { display: flex; }
+        .car-modal-content {
+            background: #fff;
+            border-radius: 18px;
+            max-width: 920px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: modalIn 0.3s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .car-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 24px;
+            border-bottom: 1px solid #eee;
+        }
+        .car-modal-header h2 {
+            font-size: 18px;
+            color: #1a1a2e;
+            margin: 0;
+        }
+        .car-modal-header h2 small {
+            font-size: 12px;
+            color: #888;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+        .modal-close {
+            width: 32px; height: 32px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            transition: all 0.2s;
+        }
+        .modal-close:hover { background: #e0e0e0; color: #000; }
+        .car-modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        .car-hero-image {
+            width: 100%;
+            height: 360px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .car-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .car-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .car-info-card {
+            background: #f7f9fc;
+            border-radius: 10px;
+            padding: 14px 16px;
+            border-left: 3px solid #00d4ff;
+        }
+        .car-info-card .label {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        .car-info-card .value {
+            font-size: 15px;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+        .car-info-card .sub {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px;
+        }
+        .car-section-title {
+            font-size: 13px;
+            color: #1a1a2e;
+            font-weight: 700;
+            margin: 20px 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .car-desc {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.7;
+            background: #f7f9fc;
+            padding: 14px 18px;
+            border-radius: 10px;
+        }
+        .part-thumbs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .part-thumb {
+            background: #fafbfc;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        .part-thumb .img {
+            width: 100%;
+            height: 80px;
+            background: #f0f3f7;
+            overflow: hidden;
+        }
+        .part-thumb .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .part-thumb .name {
+            font-size: 10px;
+            color: #555;
+            text-align: center;
+            padding: 5px 0;
+            font-weight: 500;
+        }
+
+        /* 加载进度 */
+        .loading-progress {
+            margin-top: 12px;
+            width: 200px;
+            height: 4px;
+            background: #eee;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .loading-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .loading-text-small {
+            margin-top: 6px;
+            font-size: 11px;
+            color: #999;
+        }
     </style>
 </head>
 <body>
     <div class="loading-screen" id="loading">
         <div class="loader"></div>
         <p class="loading-text">正在加载3D引擎...</p>
+        <div class="loading-progress">
+            <div class="loading-progress-fill" id="loadProgressFill"></div>
+        </div>
+        <p class="loading-text-small" id="loadProgressText">0%</p>
+    </div>
+
+    <!-- 零件悬停提示框 -->
+    <div class="part-tooltip" id="partTooltip"></div>
+
+    <!-- 整车展示模态框 -->
+    <div class="car-modal" id="carModal">
+        <div class="car-modal-content">
+            <div class="car-modal-header">
+                <h2>🚗 大众高尔夫 2024 整车展示 <small>Volkswagen Golf MK8.5</small></h2>
+                <button class="modal-close" id="modalCloseBtn">✕</button>
+            </div>
+            <div class="car-modal-body">
+                <div class="car-hero-image">
+                    <img id="carHeroImg" alt="Volkswagen Golf 2024" />
+                </div>
+
+                <div class="car-info-grid">
+                    <div class="car-info-card">
+                        <div class="label">🚙 车型级别</div>
+                        <div class="value">紧凑型两厢轿车</div>
+                        <div class="sub">C-Segment Hatchback</div>
+                    </div>
+                    <div class="car-info-card">
+                        <div class="label">📐 车身尺寸 (L×W×H)</div>
+                        <div class="value">4284 × 1789 × 1456 mm</div>
+                        <div class="sub">轴距 2636 mm</div>
+                    </div>
+                    <div class="car-info-card">
+                        <div class="label">⚡ 动力总成</div>
+                        <div class="value">1.5 TSI evo2 涡轮增压</div>
+                        <div class="sub">110 kW (150 PS) / 250 N·m</div>
+                    </div>
+                    <div class="car-info-card">
+                        <div class="label">🏁 0-100 km/h</div>
+                        <div class="value">8.5 秒</div>
+                        <div class="sub">极速 220 km/h</div>
+                    </div>
+                    <div class="car-info-card">
+                        <div class="label">🔧 变速箱</div>
+                        <div class="value">7 速 DSG 双离合</div>
+                        <div class="sub">DQ200 干式双离合</div>
+                    </div>
+                    <div class="car-info-card">
+                        <div class="label">⚖️ 整备质量</div>
+                        <div class="value">1355 kg</div>
+                        <div class="sub">轻量化 MQB Evo 平台</div>
+                    </div>
+                </div>
+
+                <div class="car-section-title">📋 车型简介</div>
+                <div class="car-desc">
+                    第八代高尔夫 (MK8.5) 中期改款车型，外观采用全新 IQ.LIGHT 矩阵式 LED 大灯与贯穿式 LED 灯带，
+                    内饰配备 10.25 英寸 Digital Cockpit Pro 数字仪表和 12.9 英寸 Discover Pro 中控屏。
+                    动力总成全面升级到 EA211 evo2 1.5 TSI 发动机，搭载主动气缸管理 (ACT) 和可变截面涡轮 (VTG) 技术，
+                    兼顾强劲动力与低油耗，综合油耗仅 5.5L/100km。
+                </div>
+
+                <div class="car-section-title">🔧 主要零部件概览</div>
+                <div class="part-thumbs" id="partThumbs"></div>
+            </div>
+        </div>
     </div>
 
     <div id="app">
         <header>
             <div class="logo">
                 <div class="logo-icon">🚗</div>
-                <h1>整车智能装配系统</h1>
+                <h1>大众高尔夫 2024 - 智能装配系统</h1>
             </div>
             <div class="header-actions">
+                <button class="btn btn-secondary" id="viewCarBtn">🚙 整车展示</button>
                 <button class="btn btn-secondary" id="resetBtn">🔄 重置</button>
                 <button class="btn btn-primary" id="demoBtn">▶️ 自动演示</button>
             </div>
@@ -289,9 +617,9 @@
                 <canvas id="three-canvas"></canvas>
                 
                 <div class="welcome-panel" id="welcomePanel">
-                    <h2>👋 欢迎使用整车装配系统！</h2>
+                    <h2>👋 欢迎使用大众高尔夫 2024 装配系统！</h2>
                     <p>点击右侧步骤的「▶️ 播放」按钮查看装配动画，或点击「自动演示」观看完整流程。</p>
-                    <p style="color: #00d4ff; font-size: 12px;">💡 使用底部零件按钮可以单独显示/隐藏各个零件</p>
+                    <p style="color: #00d4ff; font-size: 12px;">💡 鼠标悬停在3D模型上可查看零件详细信息，点击「🚙 整车展示」查看整车图片</p>
                 </div>
 
                 <div class="info-overlay">
@@ -306,8 +634,8 @@
                     <div class="product-info">
                         <div class="product-image">🚙</div>
                         <div class="product-details">
-                            <h3>轿车整车总成</h3>
-                            <p>型号: CAR-2024</p>
+                            <h3>大众高尔夫 MK8.5</h3>
+                            <p>型号: VW Golf 1.5 TSI 2024</p>
                             <p>零件数: 12件</p>
                         </div>
                     </div>
@@ -366,18 +694,18 @@
 
         // 装配步骤定义
         const assemblySteps = [
-            { id: 1, title: '安装底盘车架', description: '将底盘车架放置在工作台上', part: 'chassis' },
-            { id: 2, title: '安装发动机', description: '在发动机舱安装发动机总成', part: 'engine' },
-            { id: 3, title: '安装变速箱', description: '连接变速箱与传动轴', part: 'transmission' },
-            { id: 4, title: '安装前悬挂', description: '安装前悬挂系统和减震器', part: 'frontSuspension' },
-            { id: 5, title: '安装后悬挂', description: '安装后悬挂系统和减震器', part: 'rearSuspension' },
-            { id: 6, title: '安装前车轮', description: '安装前轮胎和轮毂', part: 'frontWheels' },
-            { id: 7, title: '安装后车轮', description: '安装后轮胎和轮毂', part: 'rearWheels' },
-            { id: 8, title: '安装车身外壳', description: '安装完全封闭的车身外壳', part: 'body' },
-            { id: 9, title: '安装防火墙', description: '安装发动机舱与驾驶舱之间的隔板', part: 'firewall' },
-            { id: 10, title: '安装座椅', description: '安装驾驶座和乘客座椅', part: 'seats' },
-            { id: 11, title: '安装方向盘', description: '安装方向盘和转向柱', part: 'steeringWheel' },
-            { id: 12, title: '安装仪表盘', description: '安装仪表盘和中控台', part: 'dashboard' }
+            { id: 1, title: '安装底盘车架', description: '安装 MQB Evo 平台底盘车架', part: 'chassis' },
+            { id: 2, title: '安装发动机', description: '在发动机舱安装 1.5 TSI evo2 发动机', part: 'engine' },
+            { id: 3, title: '安装变速箱', description: '连接 7 速 DSG 双离合变速箱', part: 'transmission' },
+            { id: 4, title: '安装前悬挂', description: '安装前麦弗逊独立悬挂系统', part: 'frontSuspension' },
+            { id: 5, title: '安装后悬挂', description: '安装后多连杆独立悬挂系统', part: 'rearSuspension' },
+            { id: 6, title: '安装前车轮', description: '安装前 18 英寸铝合金轮毂', part: 'frontWheels' },
+            { id: 7, title: '安装后车轮', description: '安装后 18 英寸铝合金轮毂', part: 'rearWheels' },
+            { id: 8, title: '安装车身外壳', description: '安装高尔夫 MK8.5 标志性车身', part: 'body' },
+            { id: 9, title: '安装防火墙', description: '安装发动机舱与驾驶舱的隔板', part: 'firewall' },
+            { id: 10, title: '安装座椅', description: '安装前排 ergoActive 运动座椅', part: 'seats' },
+            { id: 11, title: '安装方向盘', description: '安装多功能真皮方向盘', part: 'steeringWheel' },
+            { id: 12, title: '安装仪表盘', description: '安装 Digital Cockpit Pro 数字仪表', part: 'dashboard' }
         ];
 
         // 零件颜色定义
@@ -389,11 +717,11 @@
             rearSuspension: 0x718096,
             frontWheels: 0x1f2937,
             rearWheels: 0x1f2937,
-            body: 0x2563eb,
+            body: 0xc01717, // 大众高尔夫经典 Kings Red 国王红
             firewall: 0x374151,
-            seats: 0x7c3aed,
+            seats: 0x1f2937,
             steeringWheel: 0x1f2937,
-            dashboard: 0x374151
+            dashboard: 0x1f2937
         };
 
         // 零件图标
@@ -408,13 +736,260 @@
             body: '🚗',
             firewall: '🧱',
             seats: '💺',
-            steeringWheel: '🅿️',
+            steeringWheel: '🎯',
             dashboard: '📊'
         };
 
-        function init() {
+        // 图片生成函数（使用 text_to_image API）
+        function makeImage(prompt) {
+            return 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt='
+                + encodeURIComponent(prompt) + '&image_size=landscape_4_3';
+        }
+
+        // 大众高尔夫 2024 (MK8.5) 真实零件数据
+        const partData = {
+            chassis: {
+                name: '底盘车架',
+                nameEn: 'MQB Evo Platform',
+                icon: '🔲',
+                image: makeImage('automotive car chassis frame underbody, volkswagen golf MK8 MQB evo platform, technical illustration, white background, isometric view, professional product photo'),
+                description: '大众最新的 MQB Evo 模块化平台，采用高强度热成型钢与激光焊接工艺，扭转刚度高达 28000 N·m/deg，兼顾轻量化与碰撞安全。',
+                specs: {
+                    '平台': 'MQB Evo',
+                    '扭转刚度': '28000 N·m/deg',
+                    '材料': '超高强度热成型钢',
+                    '工艺': '激光焊接',
+                    '轴距': '2636 mm',
+                    '车架重量': '约 320 kg'
+                }
+            },
+            engine: {
+                name: '发动机总成',
+                nameEn: '1.5 TSI evo2',
+                icon: '⚙️',
+                image: makeImage('volkswagen 1.5 TSI evo2 EA211 turbocharged inline 4 cylinder automotive engine, technical product photo, clean white background, professional photography'),
+                description: 'EA211 evo2 系列 1.5T 涡轮增压全铝发动机，搭载主动气缸管理 (ACT) 和可变截面涡轮 (VTG) 技术，动力强劲且油耗低。',
+                specs: {
+                    '型号': 'EA211 evo2 1.5 TSI',
+                    '排量': '1.5L (1498cc)',
+                    '最大功率': '110 kW / 150 PS',
+                    '最大扭矩': '250 N·m',
+                    '缸径×行程': '74.5 × 85.9 mm',
+                    '压缩比': '10.5:1',
+                    '供油': '350bar 缸内直喷',
+                    '排放': '国六b / 欧6d'
+                }
+            },
+            transmission: {
+                name: '变速箱',
+                nameEn: '7-Speed DSG',
+                icon: '🔩',
+                image: makeImage('volkswagen 7 speed DSG DQ200 dual clutch automatic transmission gearbox, automotive technical photo, white background, product photography'),
+                description: 'DQ200 7 速干式双离合变速箱，换挡迅速平顺，传动效率高达 95%，结合手动模式的驾驶乐趣与自动挡的舒适性。',
+                specs: {
+                    '型号': 'DQ200 (7 速 DSG)',
+                    '类型': '干式双离合',
+                    '最大扭矩': '250 N·m',
+                    '换挡时间': '< 200 ms',
+                    '传动效率': '95%',
+                    '挡位数': '7 前进 + 1 倒挡',
+                    '重量': '约 70 kg'
+                }
+            },
+            frontSuspension: {
+                name: '前悬挂',
+                nameEn: 'MacPherson Strut',
+                icon: '🔧',
+                image: makeImage('volkswagen golf MK8 front MacPherson suspension strut assembly with anti roll bar, automotive technical, white background, product photo'),
+                description: '前麦弗逊式独立悬挂，配备稳定杆和液压减震筒，经过精心调校，在保持舒适性的同时提供精准的操控。',
+                specs: {
+                    '类型': '麦弗逊式独立悬挂',
+                    '减震器': '液压双筒式',
+                    '弹簧': '螺旋弹簧',
+                    '稳定杆': '前防倾杆',
+                    '材质': '铝合金控制臂',
+                    '行程': '约 150 mm'
+                }
+            },
+            rearSuspension: {
+                name: '后悬挂',
+                nameEn: 'Multi-link Independent',
+                icon: '🔧',
+                image: makeImage('volkswagen golf MK8 rear multi link independent suspension assembly, automotive technical photo, white background, product photography'),
+                description: '后多连杆独立悬挂，四连杆加横向稳定杆结构，提供卓越的轮胎贴地性，确保高速行驶的稳定性与舒适性。',
+                specs: {
+                    '类型': '多连杆独立悬挂',
+                    '连杆数': '4 连杆 + 1 横拉杆',
+                    '减震器': '液压双筒式',
+                    '材质': '高强度钢',
+                    '横向稳定杆': '是',
+                    '调校': '运动化舒适调校'
+                }
+            },
+            frontWheels: {
+                name: '前车轮',
+                nameEn: '18" Alloy Wheels',
+                icon: '🛞',
+                image: makeImage('volkswagen golf R style 18 inch alloy wheel rim with continental tire 225/40 R18, automotive wheel product photo, white background, studio lighting'),
+                description: '18 英寸 Valencia 铝合金双色轮毂，搭配 Continental 225/40 R18 高性能轮胎，提供优秀的抓地力与视觉效果。',
+                specs: {
+                    '尺寸': '18 × 7.5J',
+                    '轮胎规格': '225/40 R18',
+                    '轮胎品牌': 'Continental PremiumContact',
+                    '制动盘': '通风盘 Ø 312mm',
+                    '制动卡钳': '单活塞浮动卡钳',
+                    '轮毂材质': '铝合金'
+                }
+            },
+            rearWheels: {
+                name: '后车轮',
+                nameEn: '18" Alloy Wheels',
+                icon: '🛞',
+                image: makeImage('volkswagen golf R style 18 inch rear alloy wheel rim with tire, automotive wheel product photo, white background, studio lighting'),
+                description: '后轮同样配备 18 英寸 Valencia 铝合金双色轮毂和 Continental 高性能轮胎，前后规格统一保证操控平衡。',
+                specs: {
+                    '尺寸': '18 × 7.5J',
+                    '轮胎规格': '225/40 R18',
+                    '轮胎品牌': 'Continental PremiumContact',
+                    '制动盘': '实心盘 Ø 282mm',
+                    '制动卡钳': '单活塞浮动卡钳',
+                    '悬挂连接': '多连杆独立'
+                }
+            },
+            body: {
+                name: '车身外壳',
+                nameEn: 'MK8.5 Body-in-White',
+                icon: '🚗',
+                image: makeImage('volkswagen golf 2024 MK8.5 hatchback red car body exterior three quarter front view, IQ.LIGHT matrix LED headlight, sharp character lines, automotive product photo, white background, studio lighting'),
+                description: '大众高尔夫 MK8.5 标志性车身设计，全新 IQ.LIGHT 矩阵式 LED 大灯搭配贯穿式 LED 灯带，锋利的车身腰线与悬浮式车顶设计。',
+                specs: {
+                    '级别': '紧凑型两厢轿车',
+                    '长×宽×高': '4284×1789×1456 mm',
+                    '轴距': '2636 mm',
+                    '整备质量': '1355 kg',
+                    '风阻系数': 'Cd 0.275',
+                    '车门数': '5 门',
+                    '油箱容积': '50 L'
+                }
+            },
+            firewall: {
+                name: '防火墙',
+                nameEn: 'Firewall Bulkhead',
+                icon: '🧱',
+                image: makeImage('car firewall bulkhead panel between engine bay and cabin, automotive technical photo, white background, product photography'),
+                description: '高强度钢制防火墙，集成隔热隔音材料，有效阻隔发动机舱的噪音与热量传导至驾驶舱，提升 NVH 性能。',
+                specs: {
+                    '材料': '镀锌高强度钢',
+                    '厚度': '0.8 - 1.2 mm',
+                    '隔热层': 'EPP 泡沫 + 铝箔',
+                    '隔音': '沥青阻尼板',
+                    '减重设计': '空腔注蜡',
+                    '功能': '隔热+隔音+结构'
+                }
+            },
+            seats: {
+                name: '座椅',
+                nameEn: 'ergoActive Sports Seats',
+                icon: '💺',
+                image: makeImage('volkswagen golf 2024 sport seats with tartan fabric upholstery and headrest, automotive interior product photo, white background, studio lighting'),
+                description: 'ergoActive 运动型座椅，采用高级织物与 ArtVelours 微纤维材质，ergoActive 认证提供 14 向电动调节与按摩功能。',
+                specs: {
+                    '材质': 'ArtVelours 微纤维',
+                    '调节方式': '14 向电动',
+                    '功能': '加热/通风/按摩',
+                    '认证': 'ergoActive',
+                    '侧翼': '运动型支撑',
+                    '头枕': '可调高度'
+                }
+            },
+            steeringWheel: {
+                name: '方向盘',
+                nameEn: 'Multi-function Steering',
+                icon: '🎯',
+                image: makeImage('volkswagen golf 2024 multi function leather steering wheel with VW logo and touch controls, automotive interior product photo, white background, studio lighting'),
+                description: '三辐式多功能真皮方向盘，集成电容触控式多功能按键，加热功能与换挡拨片，提供卓越的握感与操控体验。',
+                specs: {
+                    '材质': 'Nappa 真皮',
+                    '按键': '电容触控',
+                    '功能': '加热/换挡拨片',
+                    '调节': '手动 4 向',
+                    '气囊': '驾驶员安全气囊',
+                    '直径': '375 mm'
+                }
+            },
+            dashboard: {
+                name: '仪表盘',
+                nameEn: 'Digital Cockpit Pro',
+                icon: '📊',
+                image: makeImage('volkswagen golf 2024 digital cockpit dashboard with 10.25 inch instrument cluster and 12.9 inch infotainment screen, automotive interior product photo, white background, studio lighting'),
+                description: 'Digital Cockpit Pro 10.25 英寸全液晶数字仪表，配合 12.9 英寸 Discover Pro 中控屏，支持无线 Apple CarPlay 与 Android Auto。',
+                specs: {
+                    '仪表': '10.25" Digital Cockpit Pro',
+                    '中控屏': '12.9" 触控电容屏',
+                    '分辨率': '1280×720 (仪表)',
+                    '系统': 'MIB 4.0',
+                    '互联': '无线 CarPlay/Android Auto',
+                    '语音': 'IDA 智能语音助手',
+                    '导航': '在线实时导航'
+                }
+            }
+        };
+
+        // 整车展示大图
+        const carOverviewImage = makeImage('volkswagen golf 2024 MK8.5 red kings red hatchback full car exterior three quarter front view, professional automotive photography, white background, studio lighting, sharp LED headlights, modern design, photorealistic, 8k');
+        // 备选角度图
+        const carOverviewImageRear = makeImage('volkswagen golf 2024 MK8.5 red hatchback rear three quarter view, LED taillights, dynamic stance, automotive product photo, white background, studio lighting, photorealistic, 8k');
+
+        // 预加载缓存（避免重复请求）
+        const imageCache = new Map();
+
+        // 图片预加载函数
+        function preloadImage(url) {
+            return new Promise((resolve) => {
+                if (imageCache.has(url)) {
+                    resolve(imageCache.get(url));
+                    return;
+                }
+                const img = new Image();
+                img.onload = () => { imageCache.set(url, img); resolve(img); };
+                img.onerror = () => { imageCache.set(url, img); resolve(img); };
+                img.src = url;
+            });
+        }
+
+        async function preloadAllImages(progressCallback) {
+            const urls = [
+                ...Object.values(partData).map(p => p.image),
+                carOverviewImage,
+                carOverviewImageRear
+            ];
+            const uniqueUrls = [...new Set(urls)];
+            let loaded = 0;
+            const total = uniqueUrls.length;
+
+            // 并发预加载，但每个完成时更新进度
+            await Promise.all(uniqueUrls.map(url => {
+                return preloadImage(url).then(() => {
+                    loaded++;
+                    const percent = Math.round((loaded / total) * 100);
+                    if (progressCallback) progressCallback(percent, loaded, total);
+                });
+            }));
+        }
+
+        async function init() {
             const canvas = document.getElementById('three-canvas');
             const container = document.getElementById('viewer-container');
+
+            // 预加载所有图片（带进度）
+            const progressFill = document.getElementById('loadProgressFill');
+            const progressText = document.getElementById('loadProgressText');
+            const loadingText = document.querySelector('.loading-text');
+            loadingText.textContent = '正在加载零件图片...';
+            await preloadAllImages((percent) => {
+                progressFill.style.width = percent + '%';
+                progressText.textContent = percent + '%';
+            });
 
             // 场景设置
             scene = new THREE.Scene();
@@ -451,14 +1026,170 @@
             // 设置UI
             setupUI();
 
+            // 初始化悬停交互
+            setupHoverInteraction();
+
+            // 初始化模态框
+            setupCarModal();
+
             // 窗口大小调整
             window.addEventListener('resize', onWindowResize);
             
             // 隐藏加载画面
-            setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 1500);
+            setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 300);
             
             // 开始动画循环
             animate();
+        }
+
+        // 悬停交互 - 射线检测
+        let raycaster, mouse, hoveredPartName = null;
+        function setupHoverInteraction() {
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+
+            const canvas = renderer.domElement;
+            canvas.addEventListener('mousemove', onMouseMove, false);
+            canvas.addEventListener('mouseleave', () => {
+                mouse.set(-10, -10);
+                hideTooltip();
+            });
+        }
+
+        function onMouseMove(e) {
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+            mouse.clientX = e.clientX;
+            mouse.clientY = e.clientY;
+        }
+
+        function findPartFromObject(obj) {
+            // 向上遍历找到所属 part
+            let cur = obj;
+            while (cur) {
+                if (cur.userData && cur.userData.partName && parts[cur.userData.partName]) {
+                    return cur.userData.partName;
+                }
+                cur = cur.parent;
+            }
+            return null;
+        }
+
+        function showTooltip(partName, clientX, clientY) {
+            const data = partData[partName];
+            if (!data) return;
+            const tooltip = document.getElementById('partTooltip');
+
+            // 渲染规格
+            const specsHtml = Object.entries(data.specs).map(([k, v]) =>
+                `<div class="label">${k}</div><div class="value">${v}</div>`
+            ).join('');
+
+            tooltip.innerHTML = `
+                <div class="tooltip-header">
+                    <div class="tooltip-icon">${data.icon}</div>
+                    <div class="tooltip-titles">
+                        <h4>${data.name}</h4>
+                        <p>${data.nameEn}</p>
+                    </div>
+                </div>
+                <div class="tooltip-image">
+                    <img src="${data.image}" alt="${data.name}" />
+                </div>
+                <div class="tooltip-desc">${data.description}</div>
+                <div class="tooltip-specs">${specsHtml}</div>
+            `;
+
+            // 计算位置（避免超出屏幕）
+            const tooltipW = 320, tooltipH = 380;
+            let left = clientX + 18;
+            let top = clientY + 18;
+            if (left + tooltipW > window.innerWidth) left = clientX - tooltipW - 18;
+            if (top + tooltipH > window.innerHeight) top = clientY - tooltipH - 18;
+
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+            tooltip.classList.add('show');
+        }
+
+        function hideTooltip() {
+            const tooltip = document.getElementById('partTooltip');
+            tooltip.classList.remove('show');
+            hoveredPartName = null;
+        }
+
+        function checkHover() {
+            if (!raycaster) return;
+            raycaster.setFromCamera(mouse, camera);
+
+            // 收集所有可见零件的 mesh
+            const meshes = [];
+            Object.entries(parts).forEach(([name, part]) => {
+                if (part.visible) {
+                    part.traverse(child => {
+                        if (child.isMesh) meshes.push(child);
+                    });
+                }
+            });
+
+            const intersects = raycaster.intersectObjects(meshes, false);
+            if (intersects.length > 0) {
+                const partName = findPartFromObject(intersects[0].object);
+                if (partName && partName !== hoveredPartName) {
+                    hoveredPartName = partName;
+                    if (mouse.clientX !== undefined) {
+                        showTooltip(partName, mouse.clientX, mouse.clientY);
+                    }
+                } else if (partName === hoveredPartName) {
+                    // 跟随鼠标移动
+                    const tooltip = document.getElementById('partTooltip');
+                    if (mouse.clientX !== undefined) {
+                        const tooltipW = 320, tooltipH = 380;
+                        let left = mouse.clientX + 18;
+                        let top = mouse.clientY + 18;
+                        if (left + tooltipW > window.innerWidth) left = mouse.clientX - tooltipW - 18;
+                        if (top + tooltipH > window.innerHeight) top = mouse.clientY - tooltipH - 18;
+                        tooltip.style.left = left + 'px';
+                        tooltip.style.top = top + 'px';
+                    }
+                }
+            } else {
+                if (hoveredPartName) hideTooltip();
+            }
+
+            // 鼠标光标样式
+            renderer.domElement.style.cursor = (intersects.length > 0) ? 'pointer' : 'grab';
+        }
+
+        // 整车展示模态框
+        function setupCarModal() {
+            const viewBtn = document.getElementById('viewCarBtn');
+            const modal = document.getElementById('carModal');
+            const closeBtn = document.getElementById('modalCloseBtn');
+            const heroImg = document.getElementById('carHeroImg');
+            const thumbsContainer = document.getElementById('partThumbs');
+
+            viewBtn.addEventListener('click', () => {
+                heroImg.src = carOverviewImage;
+                // 渲染零件缩略图
+                thumbsContainer.innerHTML = Object.entries(partData).map(([key, p]) => `
+                    <div class="part-thumb">
+                        <div class="img"><img src="${p.image}" alt="${p.name}" /></div>
+                        <div class="name">${p.name}</div>
+                    </div>
+                `).join('');
+                modal.classList.add('show');
+            });
+
+            const closeModal = () => modal.classList.remove('show');
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
         }
 
         function setupLights() {
@@ -890,31 +1621,216 @@
             rearBumper.position.set(-2.32, 0.65, 0); // 顶面 y=0.65+0.225=0.875，与车尾封板下部连接
             body.add(rearBumper);
 
-            const headlightLeft = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.2, 0.3), new THREE.MeshStandardMaterial({
-                color: 0xffffff, emissive: 0xffffcc, emissiveIntensity: 0.5
-            }));
-            headlightLeft.position.set(2.31, 1.125, 0.7); // 移到车头封板上半部分
+            // === 高尔夫 MK8.5 标志性前脸 ===
+            // 1. 贯穿式 LED 灯带（横贯前脸，连接两侧大灯）- 标志性设计
+            const ledLightBar = new THREE.Mesh(
+                new THREE.BoxGeometry(0.08, 0.04, 1.4),
+                new THREE.MeshStandardMaterial({
+                    color: 0xffffff, emissive: 0x99ddff, emissiveIntensity: 0.9,
+                    transparent: true, opacity: 0.95
+                })
+            );
+            ledLightBar.position.set(2.31, 1.22, 0); // 大灯上方
+            body.add(ledLightBar);
+
+            // 2. 锐利修长的大灯组（左侧）- 扁平化设计带角
+            const headlightHousingLeft = new THREE.Mesh(
+                new THREE.BoxGeometry(0.1, 0.16, 0.42),
+                plasticMat(0x0a0a0a)
+            );
+            headlightHousingLeft.position.set(2.31, 1.05, 0.7);
+            headlightHousingLeft.castShadow = true;
+            body.add(headlightHousingLeft);
+
+            const headlightLeft = new THREE.Mesh(
+                new THREE.BoxGeometry(0.08, 0.12, 0.38),
+                new THREE.MeshStandardMaterial({
+                    color: 0xeef4ff, emissive: 0xc4dcff, emissiveIntensity: 0.7,
+                    transparent: true, opacity: 0.95
+                })
+            );
+            headlightLeft.position.set(2.32, 1.05, 0.7);
             body.add(headlightLeft);
-            const headlightRight = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.2, 0.3), new THREE.MeshStandardMaterial({
-                color: 0xffffff, emissive: 0xffffcc, emissiveIntensity: 0.5
-            }));
-            headlightRight.position.set(2.31, 1.125, -0.7);
+
+            // 右侧大灯
+            const headlightHousingRight = new THREE.Mesh(
+                new THREE.BoxGeometry(0.1, 0.16, 0.42),
+                plasticMat(0x0a0a0a)
+            );
+            headlightHousingRight.position.set(2.31, 1.05, -0.7);
+            headlightHousingRight.castShadow = true;
+            body.add(headlightHousingRight);
+
+            const headlightRight = new THREE.Mesh(
+                new THREE.BoxGeometry(0.08, 0.12, 0.38),
+                new THREE.MeshStandardMaterial({
+                    color: 0xeef4ff, emissive: 0xc4dcff, emissiveIntensity: 0.7,
+                    transparent: true, opacity: 0.95
+                })
+            );
+            headlightRight.position.set(2.32, 1.05, -0.7);
             body.add(headlightRight);
 
-            const taillightLeft = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.22, 0.24), new THREE.MeshStandardMaterial({
-                color: 0xff3333, emissive: 0xff3333, emissiveIntensity: 0.6
-            }));
-            taillightLeft.position.set(-2.21, 1.075, 0.7); // 移到车尾封板上半部分
+            // 3. 大众标志性水平格栅条 - VW 高尔夫前格栅
+            for (let i = -1; i <= 1; i++) {
+                const grilleSlats = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.05, 0.02, 1.5),
+                    metalMat(0x1a1a1a)
+                );
+                grilleSlats.position.set(2.32, 0.95 + i * 0.06, 0);
+                body.add(grilleSlats);
+            }
+
+            // 中央进气格栅（更大更运动化）
+            const grille = new THREE.Mesh(
+                new THREE.BoxGeometry(0.05, 0.3, 1.4),
+                metalMat(0x0a0a0a)
+            );
+            grille.position.set(2.32, 0.85, 0);
+            body.add(grille);
+
+            // 4. 雾灯区域（两侧下部进气口）
+            const lowerIntakeLeft = new THREE.Mesh(
+                new THREE.BoxGeometry(0.12, 0.18, 0.5),
+                plasticMat(0x0a0a0a)
+            );
+            lowerIntakeLeft.position.set(2.32, 0.55, 0.6);
+            body.add(lowerIntakeLeft);
+            const lowerIntakeRight = new THREE.Mesh(
+                new THREE.BoxGeometry(0.12, 0.18, 0.5),
+                plasticMat(0x0a0a0a)
+            );
+            lowerIntakeRight.position.set(2.32, 0.55, -0.6);
+            body.add(lowerIntakeRight);
+
+            // === 高尔夫 MK8.5 标志性尾灯 ===
+            // L形 LED 尾灯（更扁平、带角）
+            const taillightHousingLeft = new THREE.Mesh(
+                new THREE.BoxGeometry(0.1, 0.18, 0.32),
+                plasticMat(0x0a0a0a)
+            );
+            taillightHousingLeft.position.set(-2.21, 1.18, 0.72);
+            taillightHousingLeft.castShadow = true;
+            body.add(taillightHousingLeft);
+
+            const taillightLeft = new THREE.Mesh(
+                new THREE.BoxGeometry(0.08, 0.14, 0.28),
+                new THREE.MeshStandardMaterial({
+                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.8,
+                    transparent: true, opacity: 0.95
+                })
+            );
+            taillightLeft.position.set(-2.22, 1.18, 0.72);
             body.add(taillightLeft);
-            const taillightRight = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.22, 0.24), new THREE.MeshStandardMaterial({
-                color: 0xff3333, emissive: 0xff3333, emissiveIntensity: 0.6
-            }));
-            taillightRight.position.set(-2.21, 1.075, -0.7);
+
+            // L 形 LED 灯带（沿后翼子板延伸）- 标志性 Golf 特征
+            const taillightStripLeft = new THREE.Mesh(
+                new THREE.BoxGeometry(0.05, 0.04, 0.6),
+                new THREE.MeshStandardMaterial({
+                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.6
+                })
+            );
+            taillightStripLeft.position.set(-2.22, 1.08, 0.45);
+            body.add(taillightStripLeft);
+
+            const taillightHousingRight = new THREE.Mesh(
+                new THREE.BoxGeometry(0.1, 0.18, 0.32),
+                plasticMat(0x0a0a0a)
+            );
+            taillightHousingRight.position.set(-2.21, 1.18, -0.72);
+            taillightHousingRight.castShadow = true;
+            body.add(taillightHousingRight);
+
+            const taillightRight = new THREE.Mesh(
+                new THREE.BoxGeometry(0.08, 0.14, 0.28),
+                new THREE.MeshStandardMaterial({
+                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.8,
+                    transparent: true, opacity: 0.95
+                })
+            );
+            taillightRight.position.set(-2.22, 1.18, -0.72);
             body.add(taillightRight);
 
-            const grille = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.3, 1.5), metalMat(0x1f2937));
-            grille.position.set(2.31, 1.025, 0); // 移到车头封板中间
-            body.add(grille);
+            const taillightStripRight = new THREE.Mesh(
+                new THREE.BoxGeometry(0.05, 0.04, 0.6),
+                new THREE.MeshStandardMaterial({
+                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.6
+                })
+            );
+            taillightStripRight.position.set(-2.22, 1.08, -0.45);
+            body.add(taillightStripRight);
+
+            // 5. 贯穿式尾灯灯条（连接两侧）- MK8.5 标志性
+            const taillightBar = new THREE.Mesh(
+                new THREE.BoxGeometry(0.06, 0.03, 1.4),
+                new THREE.MeshStandardMaterial({
+                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.5,
+                    transparent: true, opacity: 0.8
+                })
+            );
+            taillightBar.position.set(-2.22, 1.18, 0);
+            body.add(taillightBar);
+
+            // === 高尔夫 MK8.5 标志性特征 ===
+            // C 柱 - 高尔夫经典折线（C-pillar golf signature kink）
+            const cPillarGolf = new THREE.Mesh(
+                new THREE.BoxGeometry(0.05, 0.35, 0.05),
+                plasticMat(0x1a1a1a)
+            );
+            cPillarGolf.position.set(-1.0, 1.65, 0.92);
+            body.add(cPillarGolf);
+            const cPillarGolfR = cPillarGolf.clone();
+            cPillarGolfR.position.z = -0.92;
+            body.add(cPillarGolfR);
+
+            // 车顶扰流板（车尾顶部小尾翼）- 运动化高尔夫特征
+            const roofSpoiler = new THREE.Mesh(
+                new THREE.BoxGeometry(0.4, 0.05, 1.8),
+                plasticMat(0x1a1a1a)
+            );
+            roofSpoiler.position.set(-1.85, 1.99, 0);
+            body.add(roofSpoiler);
+
+            // 车身侧裙 - 降低视觉重心，让车看起来更贴地
+            const sideSkirtLeft = new THREE.Mesh(
+                new THREE.BoxGeometry(3.2, 0.12, 0.06),
+                plasticMat(0x0a0a0a)
+            );
+            sideSkirtLeft.position.set(0, 0.32, 1.0);
+            body.add(sideSkirtLeft);
+            const sideSkirtRight = sideSkirtLeft.clone();
+            sideSkirtRight.position.z = -1.0;
+            body.add(sideSkirtRight);
+
+            // 大众 VW Logo（前格栅中央，发光效果）
+            const vwLogo = new THREE.Mesh(
+                new THREE.CircleGeometry(0.1, 32),
+                new THREE.MeshStandardMaterial({
+                    color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.4,
+                    metalness: 0.6, roughness: 0.3
+                })
+            );
+            vwLogo.position.set(2.32, 1.22, 0);
+            vwLogo.rotation.y = Math.PI / 2;
+            body.add(vwLogo);
+
+            // 进气口装饰条（蜂窝状下格栅装饰）
+            const lowerGrille = new THREE.Mesh(
+                new THREE.BoxGeometry(0.05, 0.18, 1.0),
+                new THREE.MeshStandardMaterial({
+                    color: 0x0a0a0a, metalness: 0.7, roughness: 0.3
+                })
+            );
+            lowerGrille.position.set(2.32, 0.7, 0);
+            body.add(lowerGrille);
+
+            // 车顶天线（鲨鱼鳍）
+            const sharkFin = new THREE.Mesh(
+                new THREE.BoxGeometry(0.18, 0.06, 0.12),
+                plasticMat(0x0a0a0a)
+            );
+            sharkFin.position.set(-0.7, 2.22, 0);
+            body.add(sharkFin);
 
             body.visible = false;
             body.userData.originalPosition = body.position.clone();
@@ -1092,6 +2008,16 @@
             dashboard.userData.originalPosition = dashboard.position.clone();
             parts.dashboard = dashboard;
             scene.add(dashboard);
+
+            // 给每个零件 group 打上 partName 标签（用于悬停检测）
+            Object.keys(parts).forEach(name => {
+                parts[name].userData.partName = name;
+                parts[name].traverse(child => {
+                    if (child.isMesh) {
+                        child.userData.partName = name;
+                    }
+                });
+            });
         }
 
         function setupUI() {
@@ -1290,6 +2216,7 @@
         function animate() {
             requestAnimationFrame(animate);
             controls.update();
+            checkHover();
             renderer.render(scene, camera);
         }
 
