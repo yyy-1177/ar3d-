@@ -89,6 +89,12 @@
             border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
             font-size: 20px;
+            overflow: hidden;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .product-details h3 { font-size: 14px; margin-bottom: 3px; color: #333; }
         .product-details p { font-size: 11px; color: #999; }
@@ -632,11 +638,13 @@
                 <div class="panel">
                     <div class="panel-title">装配产品</div>
                     <div class="product-info">
-                        <div class="product-image">🚙</div>
+                        <div class="product-image">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=volkswagen%20golf%202024%20MK8.5%20red%20car%20icon%20simple%20clean%20design%20white%20background%20minimalist%20style&image_size=square" alt="VW Golf" />
+                        </div>
                         <div class="product-details">
                             <h3>大众高尔夫 MK8.5</h3>
                             <p>型号: VW Golf 1.5 TSI 2024</p>
-                            <p>零件数: 12件</p>
+                            <p>零件数: 20件</p>
                         </div>
                     </div>
                     <div class="progress-bar">
@@ -653,7 +661,7 @@
                         </div>
                         <div style="color: #ddd; font-size: 18px;">/</div>
                         <div style="text-align: center;">
-                            <div class="stat-value" id="totalSteps">12</div>
+                            <div class="stat-value" id="totalSteps">20</div>
                             <div class="stat-label">总步骤</div>
                         </div>
                     </div>
@@ -697,15 +705,23 @@
             { id: 1, title: '安装底盘车架', description: '安装 MQB Evo 平台底盘车架', part: 'chassis' },
             { id: 2, title: '安装发动机', description: '在发动机舱安装 1.5 TSI evo2 发动机', part: 'engine' },
             { id: 3, title: '安装变速箱', description: '连接 7 速 DSG 双离合变速箱', part: 'transmission' },
-            { id: 4, title: '安装前悬挂', description: '安装前麦弗逊独立悬挂系统', part: 'frontSuspension' },
-            { id: 5, title: '安装后悬挂', description: '安装后多连杆独立悬挂系统', part: 'rearSuspension' },
-            { id: 6, title: '安装前车轮', description: '安装前 18 英寸铝合金轮毂', part: 'frontWheels' },
-            { id: 7, title: '安装后车轮', description: '安装后 18 英寸铝合金轮毂', part: 'rearWheels' },
-            { id: 8, title: '安装车身外壳', description: '安装高尔夫 MK8.5 标志性车身', part: 'body' },
-            { id: 9, title: '安装防火墙', description: '安装发动机舱与驾驶舱的隔板', part: 'firewall' },
-            { id: 10, title: '安装座椅', description: '安装前排 ergoActive 运动座椅', part: 'seats' },
-            { id: 11, title: '安装方向盘', description: '安装多功能真皮方向盘', part: 'steeringWheel' },
-            { id: 12, title: '安装仪表盘', description: '安装 Digital Cockpit Pro 数字仪表', part: 'dashboard' }
+            { id: 4, title: '安装排气系统', description: '安装单边双出排气系统', part: 'exhaust' },
+            { id: 5, title: '安装进气系统', description: '安装空气滤清器与进气管路', part: 'intakeSystem' },
+            { id: 6, title: '安装前悬挂', description: '安装前麦弗逊独立悬挂系统', part: 'frontSuspension' },
+            { id: 7, title: '安装后悬挂', description: '安装后多连杆独立悬挂系统', part: 'rearSuspension' },
+            { id: 8, title: '安装刹车系统', description: '安装前后盘式刹车系统', part: 'brakeSystem' },
+            { id: 9, title: '安装前车轮', description: '安装前 18 英寸铝合金轮毂', part: 'frontWheels' },
+            { id: 10, title: '安装后车轮', description: '安装后 18 英寸铝合金轮毂', part: 'rearWheels' },
+            { id: 11, title: '安装车身外壳', description: '安装高尔夫 MK8.5 标志性车身', part: 'body' },
+            { id: 12, title: '安装防火墙', description: '安装发动机舱与驾驶舱的隔板', part: 'firewall' },
+            { id: 13, title: '安装燃油系统', description: '安装油箱与燃油管路', part: 'fuelSystem' },
+            { id: 14, title: '安装电气系统', description: '安装电瓶、线束与 ECU', part: 'electricalSystem' },
+            { id: 15, title: '安装空调系统', description: '安装空调压缩机与冷凝器', part: 'acSystem' },
+            { id: 16, title: '安装天窗', description: '安装全景天窗系统', part: 'sunroof' },
+            { id: 17, title: '安装座椅', description: '安装前排 ergoActive 运动座椅', part: 'seats' },
+            { id: 18, title: '安装方向盘', description: '安装多功能真皮方向盘', part: 'steeringWheel' },
+            { id: 19, title: '安装仪表盘', description: '安装 Digital Cockpit Pro 数字仪表', part: 'dashboard' },
+            { id: 20, title: '安装音响系统', description: '安装 Harman Kardon 音响', part: 'audioSystem' }
         ];
 
         // 零件颜色定义
@@ -713,15 +729,23 @@
             chassis: 0x4a5568,
             engine: 0xe53e3e,
             transmission: 0x3182ce,
+            exhaust: 0x4a5568,
+            intakeSystem: 0x718096,
             frontSuspension: 0x718096,
             rearSuspension: 0x718096,
+            brakeSystem: 0x2d3748,
             frontWheels: 0x1f2937,
             rearWheels: 0x1f2937,
-            body: 0xc01717, // 大众高尔夫经典 Kings Red 国王红
+            body: 0xc01717,
             firewall: 0x374151,
+            fuelSystem: 0x4a5568,
+            electricalSystem: 0x805ad5,
+            acSystem: 0x4299e1,
+            sunroof: 0x2d3748,
             seats: 0x1f2937,
             steeringWheel: 0x1f2937,
-            dashboard: 0x1f2937
+            dashboard: 0x1f2937,
+            audioSystem: 0x2d3748
         };
 
         // 零件图标
@@ -729,15 +753,23 @@
             chassis: '🔲',
             engine: '⚙️',
             transmission: '🔩',
+            exhaust: '💨',
+            intakeSystem: '🌀',
             frontSuspension: '🔧',
             rearSuspension: '🔧',
+            brakeSystem: '🛑',
             frontWheels: '🛞',
             rearWheels: '🛞',
             body: '🚗',
             firewall: '🧱',
+            fuelSystem: '⛽',
+            electricalSystem: '⚡',
+            acSystem: '❄️',
+            sunroof: '🌞',
             seats: '💺',
             steeringWheel: '🎯',
-            dashboard: '📊'
+            dashboard: '📊',
+            audioSystem: '🔊'
         };
 
         // 图片生成函数（使用 text_to_image API）
@@ -931,6 +963,126 @@
                     '互联': '无线 CarPlay/Android Auto',
                     '语音': 'IDA 智能语音助手',
                     '导航': '在线实时导航'
+                }
+            },
+            exhaust: {
+                name: '排气系统',
+                nameEn: 'Exhaust System',
+                icon: '💨',
+                image: makeImage('volkswagen golf MK8 exhaust system with dual tailpipes, stainless steel, automotive technical photo, white background, product photography'),
+                description: '单边双出排气系统，采用不锈钢材质，配备消音器与催化转化器，符合国六b排放标准，声浪浑厚有力。',
+                specs: {
+                    '类型': '单边双出',
+                    '材质': '不锈钢',
+                    '消音器': '双层隔音',
+                    '催化器': '三元催化',
+                    '排放标准': '国六b / 欧6d',
+                    '尾喉': '镀铬装饰'
+                }
+            },
+            intakeSystem: {
+                name: '进气系统',
+                nameEn: 'Intake System',
+                icon: '🌀',
+                image: makeImage('automotive air intake system with air filter box, intake manifold, throttle body, turbo inlet pipe, technical product photo, white background'),
+                description: '高性能进气系统，包含干式空气滤清器、进气歧管与节气门体，优化进气效率，提升发动机动力响应。',
+                specs: {
+                    '空滤': '干式纸质滤芯',
+                    '进气歧管': '塑料复合',
+                    '节气门': '电子节气门',
+                    '管径': '70 mm',
+                    '流量': '高流量设计',
+                    '隔音': '谐振腔降噪'
+                }
+            },
+            brakeSystem: {
+                name: '刹车系统',
+                nameEn: 'Brake System',
+                icon: '🛑',
+                image: makeImage('volkswagen golf MK8 brake system with disc brakes, calipers, brake pads, brake lines, technical product photo, white background'),
+                description: '前后盘式刹车系统，前通风盘配单活塞浮动卡钳，后实心盘配单活塞卡钳，配备 ABS 与 ESC 电子稳定系统。',
+                specs: {
+                    '前制动': '通风盘 Ø 312mm',
+                    '后制动': '实心盘 Ø 282mm',
+                    '卡钳': '单活塞浮动',
+                    '刹车片': '低金属配方',
+                    '助力': '真空助力器',
+                    '系统': 'ABS + ESC'
+                }
+            },
+            fuelSystem: {
+                name: '燃油系统',
+                nameEn: 'Fuel System',
+                icon: '⛽',
+                image: makeImage('automotive fuel system with fuel tank, fuel pump, fuel filter, fuel injectors, technical illustration, white background'),
+                description: '高压燃油系统，包含塑料油箱、电动燃油泵、燃油滤清器与 350bar 高压喷油嘴，确保精准燃油供给。',
+                specs: {
+                    '油箱容量': '50 L',
+                    '材质': '工程塑料',
+                    '油泵': '电动无刷',
+                    '供油压力': '350 bar',
+                    '喷油嘴': '多点电喷',
+                    '滤清器': '长效过滤'
+                }
+            },
+            electricalSystem: {
+                name: '电气系统',
+                nameEn: 'Electrical System',
+                icon: '⚡',
+                image: makeImage('automotive electrical system with battery, wiring harness, ECU, fuse box, starter motor, alternator, technical illustration, white background'),
+                description: '12V 电气系统，包含 AGM 启停蓄电池、发动机 ECU、车身控制模块 BCM 与完整线束，支持智能能量管理。',
+                specs: {
+                    '电瓶': '12V 60Ah AGM',
+                    '发电机': '14V 180A',
+                    'ECU': 'MED 17.9.10',
+                    '保险盒': '双保险盒设计',
+                    '线束': '模块化设计',
+                    '充电': '智能充电管理'
+                }
+            },
+            acSystem: {
+                name: '空调系统',
+                nameEn: 'Air Conditioning',
+                icon: '❄️',
+                image: makeImage('automotive air conditioning system with compressor, condenser, evaporator, expansion valve, technical product photo, white background'),
+                description: '双区自动空调系统，配备变频压缩机、冷凝器与蒸发器，支持前排座椅加热与快速制冷功能。',
+                specs: {
+                    '类型': '双区自动空调',
+                    '压缩机': '变频涡旋',
+                    '制冷剂': 'R-1234yf',
+                    '功能': '座椅加热',
+                    '滤芯': '活性炭过滤',
+                    '出风量': '约 450 m³/h'
+                }
+            },
+            sunroof: {
+                name: '天窗',
+                nameEn: 'Panoramic Sunroof',
+                icon: '🌞',
+                image: makeImage('automotive panoramic sunroof with glass panel, sunshade, electric motor, automotive interior photo, white background, studio lighting'),
+                description: '全景天窗系统，包含前后两片玻璃面板与电动遮阳帘，支持一键开启与防夹功能，提升车内采光与视野。',
+                specs: {
+                    '类型': '全景天窗',
+                    '面板': '双片玻璃',
+                    '开启方式': '滑动/翘起',
+                    '遮阳帘': '电动织物',
+                    '安全': '防夹功能',
+                    '面积': '约 0.8 m²'
+                }
+            },
+            audioSystem: {
+                name: '音响系统',
+                nameEn: 'Harman Kardon Audio',
+                icon: '🔊',
+                image: makeImage('volkswagen golf MK8 Harman Kardon premium audio system with speakers, subwoofer, amplifier, automotive interior photo, white background'),
+                description: 'Harman Kardon 高级音响系统，配备 8 扬声器与独立低音炮，支持 Dolby Atmos 环绕音效，提供沉浸式听觉体验。',
+                specs: {
+                    '品牌': 'Harman Kardon',
+                    '扬声器': '8 个',
+                    '低音炮': '独立箱体',
+                    '功放': '400W 峰值',
+                    '音效': 'Dolby Atmos',
+                    '调音': '多种音效模式'
                 }
             }
         };
@@ -1305,7 +1457,64 @@
             parts.transmission = transmission;
             scene.add(transmission);
 
-            // 4. 前悬挂
+            // 4. 排气系统
+            const exhaust = new THREE.Group();
+            // 主排气管 - 从发动机位置向后延伸到车尾（往中间挪，避免与车轮穿模）
+            const exhaustMain = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 3.2, 16), metalMat(partColors.exhaust));
+            exhaustMain.rotation.z = Math.PI / 2;
+            exhaustMain.position.set(-0.5, 0.28, -0.5); // 往中间挪动，避免与后轮穿模
+            exhaust.add(exhaustMain);
+
+            // 前段排气管 - 连接发动机
+            const exhaustFront = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.06, 1.2, 16), metalMat(partColors.exhaust));
+            exhaustFront.rotation.z = Math.PI / 2;
+            exhaustFront.position.set(1.1, 0.32, -0.5); // 往中间挪动
+            exhaust.add(exhaustFront);
+
+            // 消音器 - 在车尾下方
+            const muffler = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.22, 0.18), metalMat(partColors.exhaust));
+            muffler.position.set(-1.8, 0.3, -0.5); // 往中间挪动
+            muffler.castShadow = true;
+            exhaust.add(muffler);
+
+            // 排气尾喉 - 在车尾最末端（单边双出，稍微偏左）
+            const exhaustTailpipe1 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 0.25, 16), metalMat(0xf59e0b));
+            exhaustTailpipe1.rotation.z = Math.PI / 2;
+            exhaustTailpipe1.position.set(-2.15, 0.35, -0.35); // 往中间挪动
+            exhaust.add(exhaustTailpipe1);
+
+            const exhaustTailpipe2 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 0.25, 16), metalMat(0xf59e0b));
+            exhaustTailpipe2.rotation.z = Math.PI / 2;
+            exhaustTailpipe2.position.set(-2.15, 0.35, -0.55); // 往中间挪动
+            exhaust.add(exhaustTailpipe2);
+
+            exhaust.visible = false;
+            exhaust.userData.originalPosition = exhaust.position.clone();
+            parts.exhaust = exhaust;
+            scene.add(exhaust);
+
+            // 5. 进气系统
+            const intakeSystem = new THREE.Group();
+            const airFilter = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.35, 0.25), plasticMat(0x9ca3af));
+            airFilter.position.set(1.3, 0.8, 0.75);
+            airFilter.castShadow = true;
+            intakeSystem.add(airFilter);
+
+            const intakePipe = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 0.6, 16), plasticMat(0x718096));
+            intakePipe.position.set(1.0, 0.95, 0.9);
+            intakePipe.rotation.x = Math.PI / 6;
+            intakeSystem.add(intakePipe);
+
+            const throttleBody = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.15, 16), metalMat(0x4a5568));
+            throttleBody.position.set(1.5, 0.95, 0.55);
+            intakeSystem.add(throttleBody);
+
+            intakeSystem.visible = false;
+            intakeSystem.userData.originalPosition = intakeSystem.position.clone();
+            parts.intakeSystem = intakeSystem;
+            scene.add(intakeSystem);
+
+            // 6. 前悬挂
             const frontSuspension = new THREE.Group();
             for (let i = -1; i <= 1; i += 2) {
                 const lowerArm = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.06, 0.15), metalMat(partColors.frontSuspension));
@@ -1365,7 +1574,41 @@
             parts.rearSuspension = rearSuspension;
             scene.add(rearSuspension);
 
-            // 6. 前车轮
+            // 9. 刹车系统
+            const brakeSystem = new THREE.Group();
+            // 前刹车盘
+            for (let i = -1; i <= 1; i += 2) {
+                const frontBrakeDisc = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.38, 0.03, 32), metalMat(0x4a5568));
+                frontBrakeDisc.position.set(1.85, 0.57, i * 1.05);
+                frontBrakeDisc.rotation.x = Math.PI / 2;
+                brakeSystem.add(frontBrakeDisc);
+
+                const frontCaliper = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.18, 0.25), metalMat(0x1a1a1a));
+                frontCaliper.position.set(1.88, 0.57, i * 0.98);
+                brakeSystem.add(frontCaliper);
+            }
+            // 后刹车盘
+            for (let i = -1; i <= 1; i += 2) {
+                const rearBrakeDisc = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.33, 0.025, 32), metalMat(0x4a5568));
+                rearBrakeDisc.position.set(-1.85, 0.57, i * 1.05);
+                rearBrakeDisc.rotation.x = Math.PI / 2;
+                brakeSystem.add(rearBrakeDisc);
+
+                const rearCaliper = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.15, 0.2), metalMat(0x1a1a1a));
+                rearCaliper.position.set(-1.88, 0.57, i * 0.98);
+                brakeSystem.add(rearCaliper);
+            }
+            // 刹车助力器
+            const brakeBooster = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.2, 0.25, 16), plasticMat(0x374151));
+            brakeBooster.position.set(0.55, 0.95, 0);
+            brakeSystem.add(brakeBooster);
+
+            brakeSystem.visible = false;
+            brakeSystem.userData.originalPosition = brakeSystem.position.clone();
+            parts.brakeSystem = brakeSystem;
+            scene.add(brakeSystem);
+
+            // 10. 前车轮
             const frontWheels = new THREE.Group();
             for (let i = -1; i <= 1; i += 2) {
                 const tire = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.52, 0.3, 32), rubberMat(partColors.frontWheels));
@@ -1837,7 +2080,106 @@
             parts.body = body;
             scene.add(body);
 
-            // 10. 座椅（旋转90°，朝向车头方向）
+            // 13. 防火墙
+            const firewall = new THREE.Group();
+            const firewallPanel = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.75, 1.8), plasticMat(0x374151));
+            firewallPanel.position.set(0.5, 0.745, 0);
+            firewallPanel.castShadow = true;
+            firewall.add(firewallPanel);
+
+            const floorFirewall = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.06, 1.8), plasticMat(0x374151));
+            floorFirewall.position.set(0.3, 0.525, 0);
+            floorFirewall.castShadow = true;
+            firewall.add(floorFirewall);
+
+            firewall.visible = false;
+            firewall.userData.originalPosition = firewall.position.clone();
+            parts.firewall = firewall;
+            scene.add(firewall);
+
+            // 14. 燃油系统
+            const fuelSystem = new THREE.Group();
+            const fuelTank = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.3, 1.2), plasticMat(partColors.fuelSystem));
+            fuelTank.position.set(-1.5, 0.425, 0);
+            fuelTank.castShadow = true;
+            fuelSystem.add(fuelTank);
+
+            const fuelPump = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.06, 0.2, 12), plasticMat(0x718096));
+            fuelPump.position.set(-1.5, 0.58, 0.4);
+            fuelSystem.add(fuelPump);
+
+            const fuelFilter = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.15, 12), metalMat(0x4a5568));
+            fuelFilter.position.set(0.5, 0.45, -0.8);
+            fuelSystem.add(fuelFilter);
+
+            fuelSystem.visible = false;
+            fuelSystem.userData.originalPosition = fuelSystem.position.clone();
+            parts.fuelSystem = fuelSystem;
+            scene.add(fuelSystem);
+
+            // 15. 电气系统
+            const electricalSystem = new THREE.Group();
+            const battery = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.18, 0.2), plasticMat(0x22543d));
+            battery.position.set(-1.0, 0.425, -0.8);
+            battery.castShadow = true;
+            electricalSystem.add(battery);
+
+            const ecu = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.1, 0.2), plasticMat(0x4a5568));
+            ecu.position.set(1.6, 1.0, 0);
+            electricalSystem.add(ecu);
+
+            const fuseBox = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.1, 0.1), plasticMat(0x4a5568));
+            fuseBox.position.set(0.6, 1.3, 0.7);
+            electricalSystem.add(fuseBox);
+
+            const alternator = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.15, 16), metalMat(0x4a5568));
+            alternator.position.set(1.9, 0.85, -0.3);
+            electricalSystem.add(alternator);
+
+            electricalSystem.visible = false;
+            electricalSystem.userData.originalPosition = electricalSystem.position.clone();
+            parts.electricalSystem = electricalSystem;
+            scene.add(electricalSystem);
+
+            // 16. 空调系统
+            const acSystem = new THREE.Group();
+            const acCompressor = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.25, 16), metalMat(partColors.acSystem));
+            acCompressor.position.set(2.0, 0.75, -0.5);
+            acSystem.add(acCompressor);
+
+            const condenser = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.3, 0.5), metalMat(partColors.acSystem));
+            condenser.position.set(2.55, 0.65, 0);
+            acSystem.add(condenser);
+
+            const evaporator = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.1), plasticMat(0x718096));
+            evaporator.position.set(-0.3, 1.1, 0);
+            acSystem.add(evaporator);
+
+            acSystem.visible = false;
+            acSystem.userData.originalPosition = acSystem.position.clone();
+            parts.acSystem = acSystem;
+            scene.add(acSystem);
+
+            // 17. 天窗
+            const sunroof = new THREE.Group();
+            const sunroofFrame = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.03, 0.8), plasticMat(0x1a1a1a));
+            sunroofFrame.position.set(-0.2, 2.15, 0);
+            sunroof.add(sunroofFrame);
+
+            const sunroofGlass = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.02, 0.7), glassMat);
+            sunroofGlass.position.set(-0.2, 2.16, 0);
+            sunroof.add(sunroofGlass);
+
+            const sunshade = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.015, 0.7), plasticMat(0x4a5568));
+            sunshade.position.set(-0.2, 2.14, 0);
+            sunroof.add(sunshade);
+
+            sunroof.visible = false;
+            sunroof.userData.originalPosition = sunroof.position.clone();
+            parts.sunroof = sunroof;
+            scene.add(sunroof);
+
+            // 18. 座椅（旋转90°，朝向车头方向）
             const seats = new THREE.Group();
             // 驾驶座
             const driverSeatBase = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.55), plasticMat(partColors.seats));
@@ -1896,26 +2238,7 @@
             parts.seats = seats;
             scene.add(seats);
 
-            // 防火墙/隔板（隔离座位和发动机/变速箱）
-            const firewall = new THREE.Group();
-            // 主防火墙（发动机舱与驾驶舱之间）
-            const firewallPanel = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.75, 1.8), plasticMat(0x374151));
-            firewallPanel.position.set(0.5, 0.745, 0); // 调整到底盘位置
-            firewallPanel.castShadow = true;
-            firewall.add(firewallPanel);
-
-            // 地板防火墙（座位底下）
-            const floorFirewall = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.06, 1.8), plasticMat(0x374151));
-            floorFirewall.position.set(0.3, 0.525, 0); // 在底盘顶面上
-            floorFirewall.castShadow = true;
-            firewall.add(floorFirewall);
-
-            firewall.visible = false;
-            firewall.userData.originalPosition = firewall.position.clone();
-            parts.firewall = firewall;
-            scene.add(firewall);
-
-            // 11. 方向盘（抬高到仪表盘上方，无转向柱，往前移动）
+            // 19. 方向盘（抬高到仪表盘上方，无转向柱，往前移动）
             const steeringWheel = new THREE.Group();
             const wheelRim = new THREE.Mesh(new THREE.TorusGeometry(0.25, 0.03, 8, 24), metalMat(partColors.steeringWheel));
             wheelRim.rotation.x = Math.PI / 2;
@@ -2008,6 +2331,48 @@
             dashboard.userData.originalPosition = dashboard.position.clone();
             parts.dashboard = dashboard;
             scene.add(dashboard);
+
+            // 22. 音响系统
+            const audioSystem = new THREE.Group();
+            // 前左扬声器
+            const speakerFrontLeft = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.08, 16), plasticMat(partColors.audioSystem));
+            speakerFrontLeft.position.set(0.6, 1.05, 0.85);
+            audioSystem.add(speakerFrontLeft);
+
+            // 前右扬声器
+            const speakerFrontRight = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.08, 16), plasticMat(partColors.audioSystem));
+            speakerFrontRight.position.set(0.6, 1.05, -0.85);
+            audioSystem.add(speakerFrontRight);
+
+            // 后左扬声器
+            const speakerRearLeft = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.06, 16), plasticMat(partColors.audioSystem));
+            speakerRearLeft.position.set(-1.2, 0.95, 0.8);
+            audioSystem.add(speakerRearLeft);
+
+            // 后右扬声器
+            const speakerRearRight = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.06, 16), plasticMat(partColors.audioSystem));
+            speakerRearRight.position.set(-1.2, 0.95, -0.8);
+            audioSystem.add(speakerRearRight);
+
+            // 中置扬声器
+            const speakerCenter = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.08, 0.05, 12), plasticMat(partColors.audioSystem));
+            speakerCenter.position.set(0.3, 1.05, 0);
+            audioSystem.add(speakerCenter);
+
+            // 低音炮
+            const subwoofer = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.25, 0.35), plasticMat(partColors.audioSystem));
+            subwoofer.position.set(-1.6, 0.5, 0);
+            audioSystem.add(subwoofer);
+
+            // 功放
+            const amplifier = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.08, 0.35), plasticMat(0x1a1a1a));
+            amplifier.position.set(-1.7, 0.75, 0);
+            audioSystem.add(amplifier);
+
+            audioSystem.visible = false;
+            audioSystem.userData.originalPosition = audioSystem.position.clone();
+            parts.audioSystem = audioSystem;
+            scene.add(audioSystem);
 
             // 给每个零件 group 打上 partName 标签（用于悬停检测）
             Object.keys(parts).forEach(name => {
