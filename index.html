@@ -271,25 +271,29 @@
             line-height: 1.6;
         }
 
-        /* 零件悬停提示框 */
+        /* 零件悬停提示框 - 固定在左上角 */
         .part-tooltip {
             position: fixed;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(15px);
             border-radius: 14px;
-            padding: 14px;
+            padding: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
             border: 1px solid rgba(0, 212, 255, 0.3);
             pointer-events: none;
             z-index: 1000;
-            max-width: 320px;
+            width: 320px;
+            max-height: none;
+            overflow-y: visible;
             opacity: 0;
-            transform: translateY(8px) scale(0.96);
-            transition: opacity 0.18s ease, transform 0.18s ease;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            left: 20px;
+            top: 20px;
         }
         .part-tooltip.show {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
         .tooltip-header {
             display: flex;
@@ -300,27 +304,38 @@
             border-bottom: 1px solid #eee;
         }
         .tooltip-icon {
-            font-size: 20px;
-            width: 32px; height: 32px;
+            font-size: 18px;
+            width: 28px; height: 28px;
             background: linear-gradient(135deg, #00d4ff, #7b2cbf);
             color: #fff;
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .tooltip-titles {
+            flex: 1;
+            overflow: hidden;
         }
         .tooltip-titles h4 {
-            font-size: 14px;
+            font-size: 13px;
             color: #1a1a2e;
             margin-bottom: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .tooltip-titles p {
             font-size: 10px;
             color: #888;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .tooltip-image {
             width: 100%;
-            height: 140px;
-            background: #f5f7fa;
-            border-radius: 8px;
+            height: 120px;
+            background: linear-gradient(135deg, #f0f2f5, #e8eaed);
+            border-radius: 6px;
             margin-bottom: 8px;
             overflow: hidden;
             display: flex;
@@ -337,22 +352,33 @@
             color: #555;
             line-height: 1.5;
             margin-bottom: 8px;
+            word-break: break-word;
         }
         .tooltip-specs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4px 10px;
+            display: table;
+            width: 100%;
             background: #f7f9fc;
             padding: 8px 10px;
             border-radius: 6px;
         }
+        .tooltip-specs-row {
+            display: table-row;
+        }
         .tooltip-specs .label {
-            font-size: 10px;
+            display: table-cell;
+            font-size: 11px;
             color: #888;
+            padding: 4px 0;
+            width: 35%;
+            white-space: nowrap;
         }
         .tooltip-specs .value {
+            display: table-cell;
             font-size: 11px;
             color: #1a1a2e;
+            padding: 4px 0;
+            width: 65%;
+            word-break: break-word;
             font-weight: 600;
             text-align: right;
         }
@@ -550,53 +576,53 @@
     <div class="car-modal" id="carModal">
         <div class="car-modal-content">
             <div class="car-modal-header">
-                <h2>🚗 大众高尔夫 2024 整车展示 <small>Volkswagen Golf MK8.5</small></h2>
+                <h2>🚗 大众高尔夫 GTI 2021 整车展示 <small>Volkswagen Golf MK8 GTI</small></h2>
                 <button class="modal-close" id="modalCloseBtn">✕</button>
             </div>
             <div class="car-modal-body">
                 <div class="car-hero-image">
-                    <img id="carHeroImg" alt="Volkswagen Golf 2024" />
+                    <img id="carHeroImg" alt="Volkswagen Golf GTI 2021" />
                 </div>
 
                 <div class="car-info-grid">
                     <div class="car-info-card">
                         <div class="label">🚙 车型级别</div>
-                        <div class="value">紧凑型两厢轿车</div>
-                        <div class="sub">C-Segment Hatchback</div>
+                        <div class="value">紧凑型性能小钢炮</div>
+                        <div class="sub">Hot Hatch / GTI</div>
                     </div>
                     <div class="car-info-card">
                         <div class="label">📐 车身尺寸 (L×W×H)</div>
-                        <div class="value">4284 × 1789 × 1456 mm</div>
-                        <div class="sub">轴距 2636 mm</div>
+                        <div class="value">4296 × 1788 × 1471 mm</div>
+                        <div class="sub">轴距 2631 mm</div>
                     </div>
                     <div class="car-info-card">
                         <div class="label">⚡ 动力总成</div>
-                        <div class="value">1.5 TSI evo2 涡轮增压</div>
-                        <div class="sub">110 kW (150 PS) / 250 N·m</div>
+                        <div class="value">2.0 TSI EA888 涡轮增压</div>
+                        <div class="sub">180 kW (245 PS) / 370 N·m</div>
                     </div>
                     <div class="car-info-card">
                         <div class="label">🏁 0-100 km/h</div>
-                        <div class="value">8.5 秒</div>
-                        <div class="sub">极速 220 km/h</div>
+                        <div class="value">6.3 秒</div>
+                        <div class="sub">极速 250 km/h</div>
                     </div>
                     <div class="car-info-card">
                         <div class="label">🔧 变速箱</div>
                         <div class="value">7 速 DSG 双离合</div>
-                        <div class="sub">DQ200 干式双离合</div>
+                        <div class="sub">DQ381 湿式双离合</div>
                     </div>
                     <div class="car-info-card">
                         <div class="label">⚖️ 整备质量</div>
-                        <div class="value">1355 kg</div>
-                        <div class="sub">轻量化 MQB Evo 平台</div>
+                        <div class="value">1420 kg</div>
+                        <div class="sub">MQB Evo 平台</div>
                     </div>
                 </div>
 
                 <div class="car-section-title">📋 车型简介</div>
                 <div class="car-desc">
-                    第八代高尔夫 (MK8.5) 中期改款车型，外观采用全新 IQ.LIGHT 矩阵式 LED 大灯与贯穿式 LED 灯带，
-                    内饰配备 10.25 英寸 Digital Cockpit Pro 数字仪表和 12.9 英寸 Discover Pro 中控屏。
-                    动力总成全面升级到 EA211 evo2 1.5 TSI 发动机，搭载主动气缸管理 (ACT) 和可变截面涡轮 (VTG) 技术，
-                    兼顾强劲动力与低油耗，综合油耗仅 5.5L/100km。
+                    第八代高尔夫GTI (MK8) 传承经典运动基因，搭载EA888 Gen4 2.0T涡轮增压发动机，
+                    最大功率180kW（245马力），峰值扭矩370N·m。配备运动型渐进式转向、电子差速锁（XDS）
+                    和可变悬挂阻尼（ DCC），传承GTI标志性红色刹车卡钳和蜂巢式格栅设计，
+                    内饰配备10.25英寸Digital Cockpit全液晶仪表，是当之无愧的紧凑型性能车标杆。
                 </div>
 
                 <div class="car-section-title">🔧 主要零部件概览</div>
@@ -609,7 +635,7 @@
         <header>
             <div class="logo">
                 <div class="logo-icon">🚗</div>
-                <h1>大众高尔夫 2024 - 智能装配系统</h1>
+                <h1>大众高尔夫 GTI 2021 - 智能装配系统</h1>
             </div>
             <div class="header-actions">
                 <button class="btn btn-secondary" id="viewCarBtn">🚙 整车展示</button>
@@ -623,8 +649,8 @@
                 <canvas id="three-canvas"></canvas>
                 
                 <div class="welcome-panel" id="welcomePanel">
-                    <h2>👋 欢迎使用大众高尔夫 2024 装配系统！</h2>
-                    <p>点击右侧步骤的「▶️ 播放」按钮查看装配动画，或点击「自动演示」观看完整流程。</p>
+                    <h2>👋 欢迎使用大众高尔夫 GTI 2021 装配系统！</h2>
+                    <p>点击「自动演示」观看完整流程。</p>
                     <p style="color: #00d4ff; font-size: 12px;">💡 鼠标悬停在3D模型上可查看零件详细信息，点击「🚙 整车展示」查看整车图片</p>
                 </div>
 
@@ -639,12 +665,12 @@
                     <div class="panel-title">装配产品</div>
                     <div class="product-info">
                         <div class="product-image">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=volkswagen%20golf%202024%20MK8.5%20red%20car%20icon%20simple%20clean%20design%20white%20background%20minimalist%20style&image_size=square" alt="VW Golf" />
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=volkswagen%20golf%20GTI%202021%20MK8%20red%20hot%20hatch%20car%20icon%20simple%20clean%20design%20white%20background%20minimalist%20style&image_size=square" alt="VW Golf GTI" />
                         </div>
                         <div class="product-details">
-                            <h3>大众高尔夫 MK8.5</h3>
-                            <p>型号: VW Golf 1.5 TSI 2024</p>
-                            <p>零件数: 20件</p>
+                            <h3>大众高尔夫 GTI MK8</h3>
+                            <p>型号: VW Golf GTI 2.0 TSI 2021</p>
+                            <p>零件数: 18件</p>
                         </div>
                     </div>
                     <div class="progress-bar">
@@ -661,7 +687,7 @@
                         </div>
                         <div style="color: #ddd; font-size: 18px;">/</div>
                         <div style="text-align: center;">
-                            <div class="stat-value" id="totalSteps">20</div>
+                            <div class="stat-value" id="totalSteps">18</div>
                             <div class="stat-label">总步骤</div>
                         </div>
                     </div>
@@ -694,35 +720,39 @@
     <script type="module">
         import * as THREE from 'three';
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
         let scene, camera, renderer, controls;
         let parts = {};
         let currentStep = 0;
         let completedStepsCount = 0;
+        let gltfModel = null;
+        let allMeshes = [];
 
-        // 装配步骤定义
-        const assemblySteps = [
-            { id: 1, title: '安装底盘车架', description: '安装 MQB Evo 平台底盘车架', part: 'chassis' },
-            { id: 2, title: '安装发动机', description: '在发动机舱安装 1.5 TSI evo2 发动机', part: 'engine' },
-            { id: 3, title: '安装变速箱', description: '连接 7 速 DSG 双离合变速箱', part: 'transmission' },
-            { id: 4, title: '安装排气系统', description: '安装单边双出排气系统', part: 'exhaust' },
-            { id: 5, title: '安装进气系统', description: '安装空气滤清器与进气管路', part: 'intakeSystem' },
-            { id: 6, title: '安装前悬挂', description: '安装前麦弗逊独立悬挂系统', part: 'frontSuspension' },
-            { id: 7, title: '安装后悬挂', description: '安装后多连杆独立悬挂系统', part: 'rearSuspension' },
-            { id: 8, title: '安装刹车系统', description: '安装前后盘式刹车系统', part: 'brakeSystem' },
-            { id: 9, title: '安装前车轮', description: '安装前 18 英寸铝合金轮毂', part: 'frontWheels' },
-            { id: 10, title: '安装后车轮', description: '安装后 18 英寸铝合金轮毂', part: 'rearWheels' },
-            { id: 11, title: '安装车身外壳', description: '安装高尔夫 MK8.5 标志性车身', part: 'body' },
-            { id: 12, title: '安装防火墙', description: '安装发动机舱与驾驶舱的隔板', part: 'firewall' },
-            { id: 13, title: '安装燃油系统', description: '安装油箱与燃油管路', part: 'fuelSystem' },
-            { id: 14, title: '安装电气系统', description: '安装电瓶、线束与 ECU', part: 'electricalSystem' },
-            { id: 15, title: '安装空调系统', description: '安装空调压缩机与冷凝器', part: 'acSystem' },
-            { id: 16, title: '安装天窗', description: '安装全景天窗系统', part: 'sunroof' },
-            { id: 17, title: '安装座椅', description: '安装前排 ergoActive 运动座椅', part: 'seats' },
-            { id: 18, title: '安装方向盘', description: '安装多功能真皮方向盘', part: 'steeringWheel' },
-            { id: 19, title: '安装仪表盘', description: '安装 Digital Cockpit Pro 数字仪表', part: 'dashboard' },
-            { id: 20, title: '安装音响系统', description: '安装 Harman Kardon 音响', part: 'audioSystem' }
+        // 基于前缀分组的智能归类映射（从底盘→内部→外部的装配顺序，共18步）
+        const partGroupMapping = [
+            { name: "安装主车身底盘结构", keywords: ["GExtBody_", "GExt_Body_", "Body_", "Chassis", "Underbody", "Floor"] },
+            { name: "安装动力总成与刹车系统", keywords: ["GExt_Brake_", "Brake", "Engine", "Motor", "Transmission", "Gearbox", "Exhaust", "Suspension", "Strut"] },
+            { name: "安装左前车轮", keywords: ["GRim_FL_", "GTire_FL_", "Tire_FL", "Wheel_FL", "wheel_fl", "rim_fl"] },
+            { name: "安装右前车轮", keywords: ["GRim_FR_", "GTire_FR_", "Tire_FR", "Wheel_FR", "wheel_fr", "rim_fr"] },
+            { name: "安装左后车轮", keywords: ["GRim_RL_", "GTire_RL_", "Tire_RL", "Wheel_RL", "wheel_rl", "rim_rl"] },
+            { name: "安装右后车轮", keywords: ["GRim_RR_", "GTire_RR_", "Tire_RR", "Wheel_RR", "wheel_rr", "rim_rr"] },
+            { name: "中控台与仪表大屏", keywords: ["GInt_IP_", "Dashboard", "IP_", "Instrument", "Console", "GInt_Material"] },
+            { name: "方向盘与转向柱", keywords: ["GInt_SW_", "Steering", "Wheel_", "steering_wheel"] },
+            { name: "前排与后排运动座椅", keywords: ["GInt_Seats_", "Gseat_", "Seat_", "seat_", "Seatbelt", "Headrest"] },
+            { name: "车内音响与门板内饰", keywords: ["GInt_Speaker_", "GInt_Door_", "GInt_Trim_", "Door_Panel", "Speaker", "Honeycomb"] },
+            { name: "安全气囊与车顶内衬", keywords: ["GInt_Airbag_", "GInt_Pillar_", "GInt_Roof_", "Airbag", "Headliner", "Pillar"] },
+            { name: "后备箱区域与遮物帘", keywords: ["GInt_Trunk_", "GInt_Back_Shelf_", "Trunk_", "Luggage", "Cargo", "Parcel"] },
+            { name: "前车门与限位器", keywords: ["GExt_Door_FL_", "GExt_Door_FR_", "GExt_Door_Limiter_F", "Door_FL", "Door_FR", "door_fl", "door_fr"] },
+            { name: "后车门与限位器", keywords: ["GExt_Door_RL_", "GExt_Door_RR_", "GExt_Door_Limiter_R", "Door_RL", "Door_RR", "door_rl", "door_rr"] },
+            { name: "前大灯与矩阵车灯", keywords: ["GExt_Lights_", "Headlight", "Headlamp", "Front_Light", "Housing_Light", "Daytime"] },
+            { name: "尾灯与刹车灯", keywords: ["GExt_Taillight_", "Taillight", "Tail_Light", "Rear_Light", "Stop_Light", "Brake_Light"] },
+            { name: "全车玻璃与挡风玻璃", keywords: ["Windows", "Glass_Clear", "Glass_Red", "Windshield", "Windscreen", "Side_Glass", "Rear_Window"] },
+            { name: "全景天窗与车身外壳", keywords: ["GExt_Sunroof_", "Sunroof", "Panoramic", "Sun_Roof", "Car_Paint", "Paint", "Shell", "Exterior_Panel", "Hood", "Fender", "Bumper", "Grille", "Body_Outer", "Outer_", "exterior_", "Exterior_", "BodyShell", "Body_Shell", "Golf_Body", "GTI_Body", "VW_Golf", "Car_Body", "GExt_Body", "GExt_Fender", "GExt_Bumper", "GExt_Grille", "GExt_Trunk_Lid_", "Trunk_Lid", "Tailgate", "Liftgate", "Rear_Hatch", "Rear_Door", "trunk_lid", "boot_lid", "Rear_Trunk", "GExt_Rear"] }
         ];
+
+        // 装配步骤定义（动态生成）
+        let assemblySteps = [];
 
         // 零件颜色定义
         const partColors = {
@@ -750,26 +780,26 @@
 
         // 零件图标
         const partIcons = {
-            chassis: '🔲',
-            engine: '⚙️',
-            transmission: '🔩',
-            exhaust: '💨',
-            intakeSystem: '🌀',
-            frontSuspension: '🔧',
-            rearSuspension: '🔧',
-            brakeSystem: '🛑',
-            frontWheels: '🛞',
-            rearWheels: '🛞',
-            body: '🚗',
-            firewall: '🧱',
-            fuelSystem: '⛽',
-            electricalSystem: '⚡',
-            acSystem: '❄️',
-            sunroof: '🌞',
-            seats: '💺',
-            steeringWheel: '🎯',
-            dashboard: '📊',
-            audioSystem: '🔊'
+            step_0: '🔲',
+            step_1: '⚙️',
+            step_2: '🛞',
+            step_3: '🛞',
+            step_4: '🛞',
+            step_5: '🛞',
+            step_6: '📊',
+            step_7: '🎯',
+            step_8: '💺',
+            step_9: '🔊',
+            step_10: '🛡️',
+            step_11: '📦',
+            step_12: '🚪',
+            step_13: '🚪',
+            step_14: '💡',
+            step_15: '🔴',
+            step_16: '🔍',
+            step_17: '🌞',
+            step_18: '🚪',
+            step_19: '🎨'
         };
 
         // 图片生成函数（使用 text_to_image API）
@@ -778,128 +808,258 @@
                 + encodeURIComponent(prompt) + '&image_size=landscape_4_3';
         }
 
-        // 大众高尔夫 2024 (MK8.5) 真实零件数据
+        // 每个装配步骤的详细描述和图片数据
+        const stepInfoData = [
+            {
+                icon: '🔲',
+                title: '主车身底盘结构',
+                desc: '大众高尔夫 GTI 2021 款 MQB Evo 模块化平台基础车身结构，采用高强度热成型钢，提供卓越的车身刚性与碰撞安全性，是整个车辆装配的起点。',
+                image: makeImage('volkswagen golf GTI 2021 chassis body in white underbody frame, automotive technical product photo, white background, studio lighting, professional car body-in-white structure frame'),
+                specs: { '平台': 'MQB Evo', '材质': '热成型高强度钢', '工艺': '激光焊接', '车身重量': '约 310 kg' }
+            },
+            {
+                icon: '⚙️',
+                title: '动力总成与刹车系统',
+                desc: 'EA888 Gen4 2.0T 涡轮增压发动机、7速湿式双离合变速箱与高性能刹车系统的组合，提供强劲动力输出与精准制动，是GTI小钢炮的核心。',
+                image: makeImage('volkswagen golf GTI EA888 Gen4 engine bay with red brake caliper, automotive tech photo, white background, studio lighting, high performance brake system and engine'),
+                specs: { '发动机': 'EA888 Gen4 2.0T', '功率': '245 PS / 370 Nm', '变速箱': '7速DSG', '制动盘': '通风盘 Ø340 mm', '卡钳': '红色高性能' }
+            },
+            {
+                icon: '🛞',
+                title: '左前车轮',
+                desc: '左前 18 英寸 Richmond 铝合金双色运动轮毂，配合 Continental 225/40 R18 高性能轮胎，提供精准的转向与抓地性能。',
+                image: makeImage('volkswagen golf GTI 18 inch Richmond alloy wheel front left FL with performance tire, automotive wheel product photo, white background, studio lighting'),
+                specs: { '尺寸': '18 × 7.5J', '轮胎': '225/40 R18', '品牌': 'Continental SportContact', 'Offset': 'ET 45', '承重': '690 kg' }
+            },
+            {
+                icon: '🛞',
+                title: '右前车轮',
+                desc: '右前车轮，与左前对称配置，确保左右平衡对称的性能表现。',
+                image: makeImage('volkswagen golf GTI 18 inch Richmond alloy wheel front right FR with tire, automotive wheel product photo, white background, studio lighting'),
+                specs: { '尺寸': '18 × 7.5J', '轮胎': '225/40 R18', '品牌': 'Continental', 'Offset': 'ET 45', '承重': '690 kg' }
+            },
+            {
+                icon: '🛞',
+                title: '左后车轮',
+                desc: '左后轮 18 英寸铝合金轮毂与运动化运动化轮胎，保持前后一致的操控平衡与高性能。',
+                image: makeImage('volkswagen golf GTI 18 inch rear left RL alloy wheel with tire, automotive wheel product photo, white background'),
+                specs: { '尺寸': '18 × 7.5J', '轮胎': '225/40 R18', '品牌': 'Continental', '制动盘': '实心盘 Ø310 mm', '卡钳': 'GTI红色' }
+            },
+            {
+                icon: '🛞',
+                title: '右后车轮',
+                desc: '右后轮，与左后轮对称配置，共同承载车辆后部重量与动力传递。',
+                image: makeImage('volkswagen golf GTI 18 inch rear right RR alloy wheel rim with tire, automotive wheel product photo, white background, studio lighting'),
+                specs: { '尺寸': '18 × 7.5J', '轮胎': '225/40 R18', '品牌': 'Continental SportContact', '制动盘': '实心盘 Ø310 mm' }
+            },
+            {
+                icon: '📊',
+                title: '中控台与仪表大屏',
+                desc: '高尔夫 GTI MK8 数字驾驶舱，配备 10.25 英寸全液晶仪表盘与 8.25 英寸 Discover Pro 中控大屏，支持触控与语音控制。',
+                image: makeImage('volkswagen golf GTI MK8 digital cockpit dashboard with instrument cluster and multimedia screen, automotive interior product photo, studio lighting white background'),
+                specs: { '仪表屏': '10.25" 全液晶', '中控屏': '8.25" Discover Pro', '音响': 'Harman Kardon', '系统': 'MIB3', '接口': 'Type-C USB' }
+            },
+            {
+                icon: '🎯',
+                title: '方向盘',
+                desc: 'GTI 专属三幅式真皮多功能方向盘，带红色缝线与换挡拨片，集成触控按钮，手感舒适运动，是驾驶者与车辆沟通的桥梁。',
+                image: makeImage('volkswagen golf GTI MK8 three spoke sport multifunction leather steering wheel with red stitching, automotive interior product photo, white background, studio lighting'),
+                specs: { '材质': 'Nappa真皮', '缝线': 'GTI 红色', '换挡拨片': '支持', '功能': '多功能触控', '加热': '支持' }
+            },
+            {
+                icon: '💺',
+                title: '前排与后排运动座椅',
+                desc: 'GTI 专属苏格兰格子呢运动座椅，采用 ArtVelours 微纤维材料，配备加热与12向电动调节，提供良好的侧向支撑。',
+                image: makeImage('volkswagen golf GTI 2021 sport seats with tartan fabric upholstery and integrated headrest automotive interior product photo white background studio lighting'),
+                specs: { '材质': 'Tartan织物+微纤维', '调节': '12 向电动', '侧向支撑': '良好', '加热': '双区加热', '后排': '3 座位' }
+            },
+            {
+                icon: '🔊',
+                title: '车内音响与门板内饰',
+                desc: 'Harman Kardon 高级音响系统与精致的门板内饰，提供沉浸式的听觉与豪华的乘坐体验，GTI专属内饰设计。',
+                image: makeImage('volkswagen golf GTI MK8 door panel interior with Harman Kardon speaker system automotive interior product photo white background studio lighting'),
+                specs: { '音响品牌': 'Harman Kardon', '扬声器': '10 + 低音炮', '功放': '480 W', '门板': 'ArtVelours饰边' }
+            },
+            {
+                icon: '🛡️',
+                title: '安全气囊与车顶内衬',
+                desc: '全车多安全气囊系统与高级车顶内衬，为乘客提供完善的安全保护与舒适的乘车环境。',
+                image: makeImage('volkswagen golf GTI safety airbag system headliner roof interior automotive product photo'),
+                specs: { '气囊数': '7 个', '气囊类型': '多级触发', '内衬': '高级织物', '立柱': 'A/B/C 柱' }
+            },
+            {
+                icon: '📦',
+                title: '后备箱区域与遮物帘',
+                desc: '374L 容量后备箱，配有实用的可折叠后排座椅与遮物帘，提供灵活的储物空间。',
+                image: makeImage('volkswagen golf GTI 2021 trunk boot cargo area with parcel shelf luggage compartment automotive product photo white background studio lighting'),
+                specs: { '容积': '374 L', '扩展': '1230 L', '折叠': '40/60 可分', '遮物帘': '标配', '挂钩': '4 个' }
+            },
+            {
+                icon: '🚪',
+                title: '前车门',
+                desc: 'GTI 标志性的前门，配备液压限位器，开关平稳顺畅，开门角度适中，进出方便。',
+                image: makeImage('volkswagen golf GTI MK8 front door FL with hydraulic limiter automotive product photo white background studio lighting'),
+                specs: { '车门数': '5 门', '限位器': '液压', '密封条': '双层隔音', '门把手': '车身同色', '玻璃': '双层隔音' }
+            },
+            {
+                icon: '🚪',
+                title: '后车门',
+                desc: '后车门同样配备液压限位器与双层密封条，提供安静舒适的后排乘客进出体验。',
+                image: makeImage('volkswagen golf GTI MK8 rear door RL RR with hydraulic limiter automotive product photo white background studio lighting'),
+                specs: { '限位器': '液压', '密封条': '双层', '儿童锁': '电子控制', '后门扬声器': 'Harman Kardon' }
+            },
+            {
+                icon: '💡',
+                title: '前大灯与矩阵车灯',
+                desc: 'IQ.LIGHT LED 矩阵式前大灯，带GTI专属红色装饰条与贯穿式LED灯带，锐利而富有科技感。',
+                image: makeImage('volkswagen golf GTI 2021 IQ.LIGHT matrix LED headlight with red accent line automotive product photo white background studio lighting sharp modern car lights'),
+                specs: { '类型': 'LED 矩阵', '远光': '矩阵式', '特色': '红色LED灯带', '日行灯': 'LED', '自动大灯': '支持' }
+            },
+            {
+                icon: '🔴',
+                title: '尾灯与刹车灯',
+                desc: 'GTI 标志性 LED 尾灯与高位刹车灯，点亮效果鲜明，提供出色的夜间行车安全。',
+                image: makeImage('volkswagen golf GTI 2021 LED taillight rear light with brake lamp, automotive product photo, white background, studio lighting, modern car lights'),
+                specs: { '类型': '全 LED', '刹车灯': 'LED', '转向灯': 'LED', '效果': '动态转向', '效果2': '动态流水' }
+            },
+            {
+                icon: '🔍',
+                title: '全车玻璃与挡风玻璃',
+                desc: '全车隐私玻璃与隔热隔音前挡风玻璃，提供良好的隔音隔热与隐私保护。',
+                image: makeImage('volkswagen golf GTI 2021 windshield side glass windows automotive technical product photo white background studio lighting car windshield'),
+                specs: { '前挡': '隔热隔音', '侧窗': '隐私玻璃', '后挡': '隐私玻璃', '尺寸': '4296×1788×1471 mm' }
+            },
+            {
+                icon: '🌞',
+                title: '全景天窗与车身外壳',
+                desc: '全景天窗与GTI经典红色车漆外壳的最终总装，配备蜂巢式前格栅、车身腰线与后尾门，完成整车装配。',
+                image: makeImage('volkswagen golf GTI 2021 red car body exterior with panoramic sunroof and honeycomb grille three quarter front view, automotive product photo, white background, studio lighting, red sport hatchback'),
+                specs: { '颜色': 'GTI 经典红', '格栅': '蜂巢式', '天窗': '全景可开', '尾门': '电动', '车漆': '金属漆', '风阻系数': 'Cd 0.27' }
+            }
+        ];
+
+        // 大众高尔夫 GTI 2021 (MK8) 真实零件数据
         const partData = {
             chassis: {
                 name: '底盘车架',
-                nameEn: 'MQB Evo Platform',
+                nameEn: 'MQB Evo Sport Chassis',
                 icon: '🔲',
-                image: makeImage('automotive car chassis frame underbody, volkswagen golf MK8 MQB evo platform, technical illustration, white background, isometric view, professional product photo'),
-                description: '大众最新的 MQB Evo 模块化平台，采用高强度热成型钢与激光焊接工艺，扭转刚度高达 28000 N·m/deg，兼顾轻量化与碰撞安全。',
+                image: makeImage('automotive car chassis frame underbody, volkswagen golf GTI MK8 MQB evo sport platform, technical illustration, white background, isometric view, professional product photo'),
+                description: '大众 MQB Evo 模块化运动化平台，针对GTI车型进行运动化调校，采用高强度热成型钢与激光焊接工艺，配备运动型底盘衬套，操控性能更佳。',
                 specs: {
                     '平台': 'MQB Evo',
-                    '扭转刚度': '28000 N·m/deg',
+                    '类型': '运动化调校',
                     '材料': '超高强度热成型钢',
                     '工艺': '激光焊接',
-                    '轴距': '2636 mm',
-                    '车架重量': '约 320 kg'
+                    '轴距': '2631 mm',
+                    '车架重量': '约 310 kg'
                 }
             },
             engine: {
                 name: '发动机总成',
-                nameEn: '1.5 TSI evo2',
+                nameEn: 'EA888 Gen4 2.0 TSI',
                 icon: '⚙️',
-                image: makeImage('volkswagen 1.5 TSI evo2 EA211 turbocharged inline 4 cylinder automotive engine, technical product photo, clean white background, professional photography'),
-                description: 'EA211 evo2 系列 1.5T 涡轮增压全铝发动机，搭载主动气缸管理 (ACT) 和可变截面涡轮 (VTG) 技术，动力强劲且油耗低。',
+                image: makeImage('volkswagen EA888 Gen4 2.0 TSI turbocharged inline 4 cylinder automotive engine, technical product photo, clean white background, professional photography, sport engine'),
+                description: 'EA888 Gen4 系列 2.0T 涡轮增压全铝发动机，搭载燃油混合喷射（FSI+MPI）和可变排量机油泵技术，动力强劲，响应迅速，是GTI车型的心脏。',
                 specs: {
-                    '型号': 'EA211 evo2 1.5 TSI',
-                    '排量': '1.5L (1498cc)',
-                    '最大功率': '110 kW / 150 PS',
-                    '最大扭矩': '250 N·m',
-                    '缸径×行程': '74.5 × 85.9 mm',
-                    '压缩比': '10.5:1',
+                    '型号': 'EA888 Gen4 2.0 TSI',
+                    '排量': '2.0L (1984cc)',
+                    '最大功率': '180 kW / 245 PS',
+                    '最大扭矩': '370 N·m',
+                    '缸径×行程': '82.5 × 92.8 mm',
+                    '压缩比': '9.3:1',
                     '供油': '350bar 缸内直喷',
                     '排放': '国六b / 欧6d'
                 }
             },
             transmission: {
                 name: '变速箱',
-                nameEn: '7-Speed DSG',
+                nameEn: '7-Speed DSG DQ381',
                 icon: '🔩',
-                image: makeImage('volkswagen 7 speed DSG DQ200 dual clutch automatic transmission gearbox, automotive technical photo, white background, product photography'),
-                description: 'DQ200 7 速干式双离合变速箱，换挡迅速平顺，传动效率高达 95%，结合手动模式的驾驶乐趣与自动挡的舒适性。',
+                image: makeImage('volkswagen 7 speed DSG DQ381 dual clutch wet transmission gearbox, automotive technical photo, white background, product photography'),
+                description: 'DQ381 7 速湿式双离合变速箱，专为高扭矩发动机设计，换挡迅速平顺，传动效率高达 95%，支持弹射起步模式（Launch Control）。',
                 specs: {
-                    '型号': 'DQ200 (7 速 DSG)',
-                    '类型': '干式双离合',
-                    '最大扭矩': '250 N·m',
-                    '换挡时间': '< 200 ms',
+                    '型号': 'DQ381 (7 速 DSG)',
+                    '类型': '湿式双离合',
+                    '最大扭矩': '420 N·m',
+                    '换挡时间': '< 100 ms',
                     '传动效率': '95%',
                     '挡位数': '7 前进 + 1 倒挡',
-                    '重量': '约 70 kg'
+                    '重量': '约 82 kg'
                 }
             },
             frontSuspension: {
                 name: '前悬挂',
-                nameEn: 'MacPherson Strut',
+                nameEn: 'GTI Sport MacPherson Strut',
                 icon: '🔧',
-                image: makeImage('volkswagen golf MK8 front MacPherson suspension strut assembly with anti roll bar, automotive technical, white background, product photo'),
-                description: '前麦弗逊式独立悬挂，配备稳定杆和液压减震筒，经过精心调校，在保持舒适性的同时提供精准的操控。',
+                image: makeImage('volkswagen golf GTI MK8 front sport MacPherson suspension strut assembly with anti roll bar, automotive technical, white background, product photo'),
+                description: '前麦弗逊式独立悬挂，配备GTI运动型稳定杆和渐进式液压减震筒，经过运动化调校，在保持舒适性的同时提供精准的操控和优异的弯道性能。',
                 specs: {
                     '类型': '麦弗逊式独立悬挂',
-                    '减震器': '液压双筒式',
-                    '弹簧': '螺旋弹簧',
-                    '稳定杆': '前防倾杆',
+                    '减震器': '渐进式液压双筒',
+                    '弹簧': 'GTI运动型螺旋弹簧',
+                    '稳定杆': 'GTI运动型前防倾杆',
                     '材质': '铝合金控制臂',
-                    '行程': '约 150 mm'
+                    '行程': '约 145 mm'
                 }
             },
             rearSuspension: {
                 name: '后悬挂',
-                nameEn: 'Multi-link Independent',
+                nameEn: 'GTI Multi-link with DCC',
                 icon: '🔧',
-                image: makeImage('volkswagen golf MK8 rear multi link independent suspension assembly, automotive technical photo, white background, product photography'),
-                description: '后多连杆独立悬挂，四连杆加横向稳定杆结构，提供卓越的轮胎贴地性，确保高速行驶的稳定性与舒适性。',
+                image: makeImage('volkswagen golf GTI MK8 rear multi link independent suspension assembly with DCC, automotive technical photo, white background, product photography'),
+                description: '后多连杆独立悬挂，四连杆加横向稳定杆结构，配合DCC（动态底盘控制）自适应悬架系统，提供卓越的轮胎贴地性和可调节的驾驶模式选择。',
                 specs: {
                     '类型': '多连杆独立悬挂',
                     '连杆数': '4 连杆 + 1 横拉杆',
-                    '减震器': '液压双筒式',
+                    '减震器': 'DCC自适应阻尼',
                     '材质': '高强度钢',
-                    '横向稳定杆': '是',
+                    '横向稳定杆': 'GTI运动型',
                     '调校': '运动化舒适调校'
                 }
             },
             frontWheels: {
                 name: '前车轮',
-                nameEn: '18" Alloy Wheels',
+                nameEn: '18" Richmond Alloy Wheels',
                 icon: '🛞',
-                image: makeImage('volkswagen golf R style 18 inch alloy wheel rim with continental tire 225/40 R18, automotive wheel product photo, white background, studio lighting'),
-                description: '18 英寸 Valencia 铝合金双色轮毂，搭配 Continental 225/40 R18 高性能轮胎，提供优秀的抓地力与视觉效果。',
+                image: makeImage('volkswagen golf GTI 18 inch Richmond alloy wheel rim with performance tire 225/40 R18, automotive wheel product photo, white background, studio lighting'),
+                description: '18 英寸 Richmond 铝合金双色运动轮毂，搭配 Continental 225/40 R18 高性能轮胎，轮毂设计动感时尚，彰显GTI运动身份。',
                 specs: {
                     '尺寸': '18 × 7.5J',
                     '轮胎规格': '225/40 R18',
-                    '轮胎品牌': 'Continental PremiumContact',
-                    '制动盘': '通风盘 Ø 312mm',
-                    '制动卡钳': '单活塞浮动卡钳',
+                    '轮胎品牌': 'Continental SportContact',
+                    '制动盘': '通风盘 Ø 340mm',
+                    '制动卡钳': 'GTI 红色对向四活塞',
                     '轮毂材质': '铝合金'
                 }
             },
             rearWheels: {
                 name: '后车轮',
-                nameEn: '18" Alloy Wheels',
+                nameEn: '18" Richmond Alloy Wheels',
                 icon: '🛞',
-                image: makeImage('volkswagen golf R style 18 inch rear alloy wheel rim with tire, automotive wheel product photo, white background, studio lighting'),
-                description: '后轮同样配备 18 英寸 Valencia 铝合金双色轮毂和 Continental 高性能轮胎，前后规格统一保证操控平衡。',
+                image: makeImage('volkswagen golf GTI 18 inch rear Richmond alloy wheel rim with tire, automotive wheel product photo, white background, studio lighting'),
+                description: '后轮同样配备 18 英寸 Richmond 铝合金双色运动轮毂和 Continental 高性能轮胎，前后规格统一保证操控平衡，红色刹车卡钳格外醒目。',
                 specs: {
                     '尺寸': '18 × 7.5J',
                     '轮胎规格': '225/40 R18',
-                    '轮胎品牌': 'Continental PremiumContact',
-                    '制动盘': '实心盘 Ø 282mm',
-                    '制动卡钳': '单活塞浮动卡钳',
+                    '轮胎品牌': 'Continental SportContact',
+                    '制动盘': '实心盘 Ø 310mm',
+                    '制动卡钳': 'GTI 红色对向四活塞',
                     '悬挂连接': '多连杆独立'
                 }
             },
             body: {
                 name: '车身外壳',
-                nameEn: 'MK8.5 Body-in-White',
+                nameEn: 'MK8 GTI Body-in-White',
                 icon: '🚗',
-                image: makeImage('volkswagen golf 2024 MK8.5 hatchback red car body exterior three quarter front view, IQ.LIGHT matrix LED headlight, sharp character lines, automotive product photo, white background, studio lighting'),
-                description: '大众高尔夫 MK8.5 标志性车身设计，全新 IQ.LIGHT 矩阵式 LED 大灯搭配贯穿式 LED 灯带，锋利的车身腰线与悬浮式车顶设计。',
+                image: makeImage('volkswagen golf GTI 2021 MK8 hatchback red car body exterior three quarter front view, IQ.LIGHT matrix LED headlight with red accent, honeycomb grille, sharp character lines, automotive product photo, white background, studio lighting'),
+                description: '大众高尔夫 GTI MK8 标志性车身设计，配备GTI专属蜂巢式前格栅、IQ.LIGHT 矩阵式 LED 大灯带红色装饰线，锋利的车身腰线与悬浮式车顶设计，传承GTI经典元素。',
                 specs: {
-                    '级别': '紧凑型两厢轿车',
-                    '长×宽×高': '4284×1789×1456 mm',
-                    '轴距': '2636 mm',
-                    '整备质量': '1355 kg',
-                    '风阻系数': 'Cd 0.275',
+                    '级别': '紧凑型性能小钢炮',
+                    '长×宽×高': '4296×1788×1471 mm',
+                    '轴距': '2631 mm',
+                    '整备质量': '1420 kg',
+                    '风阻系数': 'Cd 0.27',
                     '车门数': '5 门',
                     '油箱容积': '50 L'
                 }
@@ -921,93 +1081,94 @@
             },
             seats: {
                 name: '座椅',
-                nameEn: 'ergoActive Sports Seats',
+                nameEn: 'GTI Sport Seats',
                 icon: '💺',
-                image: makeImage('volkswagen golf 2024 sport seats with tartan fabric upholstery and headrest, automotive interior product photo, white background, studio lighting'),
-                description: 'ergoActive 运动型座椅，采用高级织物与 ArtVelours 微纤维材质，ergoActive 认证提供 14 向电动调节与按摩功能。',
+                image: makeImage('volkswagen golf GTI 2021 sport seats with tartan fabric upholstery and integrated headrest, automotive interior product photo, white background, studio lighting'),
+                description: 'GTI 专属运动型座椅，采用经典苏格兰格子呢织物与 ArtVelours 微纤维材质拼接，提供良好的侧面支撑，配备加热功能，兼顾运动性与舒适性。',
                 specs: {
-                    '材质': 'ArtVelours 微纤维',
-                    '调节方式': '14 向电动',
-                    '功能': '加热/通风/按摩',
-                    '认证': 'ergoActive',
-                    '侧翼': '运动型支撑',
-                    '头枕': '可调高度'
+                    '材质': 'Tartan织物+ArtVelours',
+                    '调节方式': '12 向电动',
+                    '功能': '加热/高度可调',
+                    '认证': 'AGR 背部健康认证',
+                    '侧翼': 'GTI运动型支撑',
+                    '头枕': '一体式头枕'
                 }
             },
             steeringWheel: {
                 name: '方向盘',
-                nameEn: 'Multi-function Steering',
+                nameEn: 'GTI Multi-function Sport Wheel',
                 icon: '🎯',
-                image: makeImage('volkswagen golf 2024 multi function leather steering wheel with VW logo and touch controls, automotive interior product photo, white background, studio lighting'),
-                description: '三辐式多功能真皮方向盘，集成电容触控式多功能按键，加热功能与换挡拨片，提供卓越的握感与操控体验。',
+                image: makeImage('volkswagen golf GTI 2021 multi function sport leather steering wheel with GTI logo and paddle shifters, automotive interior product photo, white background, studio lighting'),
+                description: 'GTI 专属三辐式多功能真皮运动方向盘，集成电容触控式多功能按键和换挡拨片，加热功能与完美直径设计，提供卓越的握感与操控体验。',
                 specs: {
                     '材质': 'Nappa 真皮',
-                    '按键': '电容触控',
+                    '按键': 'GTI电容触控+拨片',
                     '功能': '加热/换挡拨片',
                     '调节': '手动 4 向',
                     '气囊': '驾驶员安全气囊',
-                    '直径': '375 mm'
+                    '直径': '370 mm'
                 }
             },
             dashboard: {
                 name: '仪表盘',
-                nameEn: 'Digital Cockpit Pro',
+                nameEn: 'Digital Cockpit 10.25"',
                 icon: '📊',
-                image: makeImage('volkswagen golf 2024 digital cockpit dashboard with 10.25 inch instrument cluster and 12.9 inch infotainment screen, automotive interior product photo, white background, studio lighting'),
-                description: 'Digital Cockpit Pro 10.25 英寸全液晶数字仪表，配合 12.9 英寸 Discover Pro 中控屏，支持无线 Apple CarPlay 与 Android Auto。',
+                image: makeImage('volkswagen golf GTI 2021 digital cockpit dashboard with 10.25 inch instrument cluster, automotive interior product photo, white background, studio lighting'),
+                description: '10.25 英寸 Digital Cockpit 全液晶数字仪表，可自定义显示风格（GTI专属红色主题），支持导航投射与行驶数据展示，配合Discovery Media中控屏。',
                 specs: {
-                    '仪表': '10.25" Digital Cockpit Pro',
-                    '中控屏': '12.9" 触控电容屏',
-                    '分辨率': '1280×720 (仪表)',
-                    '系统': 'MIB 4.0',
-                    '互联': '无线 CarPlay/Android Auto',
-                    '语音': 'IDA 智能语音助手',
-                    '导航': '在线实时导航'
+                    '仪表': '10.25" Digital Cockpit',
+                    '中控屏': '8.25" 触控电容屏',
+                    '分辨率': '1280×480 (仪表)',
+                    '系统': 'MIB 3.0',
+                    '互联': '有线 CarPlay/Android Auto',
+                    '主题': 'GTI专属红色主题',
+                    '导航': 'GPS+实时路况'
                 }
             },
             exhaust: {
                 name: '排气系统',
-                nameEn: 'Exhaust System',
+                nameEn: 'GTI Sport Exhaust',
                 icon: '💨',
-                image: makeImage('volkswagen golf MK8 exhaust system with dual tailpipes, stainless steel, automotive technical photo, white background, product photography'),
-                description: '单边双出排气系统，采用不锈钢材质，配备消音器与催化转化器，符合国六b排放标准，声浪浑厚有力。',
+                image: makeImage('volkswagen golf GTI MK8 sport exhaust system with dual tailpipes, stainless steel, automotive technical photo, white background, product photography'),
+                description: 'GTI 运动型排气系统，采用双边单出设计（左侧），配备阀门控制排气系统，不锈钢材质，配备消音器与催化转化器，声浪浑厚有力，符合国六b排放标准。',
                 specs: {
-                    '类型': '单边双出',
+                    '类型': '双边单出（左侧）',
                     '材质': '不锈钢',
-                    '消音器': '双层隔音',
+                    '阀门': '可变阀门排气',
+                    '消音器': 'GTI运动型双层隔音',
                     '催化器': '三元催化',
                     '排放标准': '国六b / 欧6d',
-                    '尾喉': '镀铬装饰'
+                    '尾喉': 'GTI镀铬装饰'
                 }
             },
             intakeSystem: {
                 name: '进气系统',
-                nameEn: 'Intake System',
+                nameEn: 'Sport Intake System',
                 icon: '🌀',
-                image: makeImage('automotive air intake system with air filter box, intake manifold, throttle body, turbo inlet pipe, technical product photo, white background'),
-                description: '高性能进气系统，包含干式空气滤清器、进气歧管与节气门体，优化进气效率，提升发动机动力响应。',
+                image: makeImage('automotive sport air intake system with air filter box, intake manifold, throttle body, turbo inlet pipe, technical product photo, white background'),
+                description: '高性能运动型进气系统，包含高流量空气滤清器、进气歧管与节气门体，优化进气效率，提升发动机动力响应，支持更高功率输出。',
                 specs: {
-                    '空滤': '干式纸质滤芯',
-                    '进气歧管': '塑料复合',
+                    '空滤': '高流量纸质滤芯',
+                    '进气歧管': '塑料复合运动型',
                     '节气门': '电子节气门',
-                    '管径': '70 mm',
+                    '管径': '76 mm',
                     '流量': '高流量设计',
                     '隔音': '谐振腔降噪'
                 }
             },
             brakeSystem: {
                 name: '刹车系统',
-                nameEn: 'Brake System',
+                nameEn: 'GTI Performance Brake',
                 icon: '🛑',
-                image: makeImage('volkswagen golf MK8 brake system with disc brakes, calipers, brake pads, brake lines, technical product photo, white background'),
-                description: '前后盘式刹车系统，前通风盘配单活塞浮动卡钳，后实心盘配单活塞卡钳，配备 ABS 与 ESC 电子稳定系统。',
+                image: makeImage('volkswagen golf GTI MK8 performance brake system with red calipers, disc brakes, technical product photo, white background'),
+                description: 'GTI 高性能刹车系统，前通风盘配红色对向四活塞固定卡钳，后实心盘配单活塞浮动卡钳，配备 ABS 与 ESC 电子稳定系统，刹车性能优异。',
                 specs: {
-                    '前制动': '通风盘 Ø 312mm',
-                    '后制动': '实心盘 Ø 282mm',
-                    '卡钳': '单活塞浮动',
-                    '刹车片': '低金属配方',
+                    '前制动': '通风盘 Ø 340mm',
+                    '后制动': '实心盘 Ø 310mm',
+                    '卡钳': 'GTI 红色对向四活塞',
+                    '刹车片': '高性能摩擦材料',
                     '助力': '真空助力器',
-                    '系统': 'ABS + ESC'
+                    '系统': 'ABS + ESC + XDS'
                 }
             },
             fuelSystem: {
@@ -1015,11 +1176,11 @@
                 nameEn: 'Fuel System',
                 icon: '⛽',
                 image: makeImage('automotive fuel system with fuel tank, fuel pump, fuel filter, fuel injectors, technical illustration, white background'),
-                description: '高压燃油系统，包含塑料油箱、电动燃油泵、燃油滤清器与 350bar 高压喷油嘴，确保精准燃油供给。',
+                description: '高压燃油系统，包含塑料油箱、电动燃油泵、燃油滤清器与 350bar 高压喷油嘴，确保精准燃油供给，支持高功率输出。',
                 specs: {
                     '油箱容量': '50 L',
                     '材质': '工程塑料',
-                    '油泵': '电动无刷',
+                    '油泵': '电动无刷高流量',
                     '供油压力': '350 bar',
                     '喷油嘴': '多点电喷',
                     '滤清器': '长效过滤'
@@ -1030,67 +1191,67 @@
                 nameEn: 'Electrical System',
                 icon: '⚡',
                 image: makeImage('automotive electrical system with battery, wiring harness, ECU, fuse box, starter motor, alternator, technical illustration, white background'),
-                description: '12V 电气系统，包含 AGM 启停蓄电池、发动机 ECU、车身控制模块 BCM 与完整线束，支持智能能量管理。',
+                description: '12V 电气系统，包含 AGM 启停蓄电池、发动机 ECU、车身控制模块 BCM 与完整线束，支持智能能量管理和启停系统。',
                 specs: {
                     '电瓶': '12V 60Ah AGM',
                     '发电机': '14V 180A',
-                    'ECU': 'MED 17.9.10',
-                    '保险盒': '双保险盒设计',
+                    'ECU': 'MED 17.9.1',
+                    '保险盒': '驾驶舱保险盒',
                     '线束': '模块化设计',
                     '充电': '智能充电管理'
                 }
             },
             acSystem: {
                 name: '空调系统',
-                nameEn: 'Air Conditioning',
+                nameEn: 'Dual Zone Auto AC',
                 icon: '❄️',
                 image: makeImage('automotive air conditioning system with compressor, condenser, evaporator, expansion valve, technical product photo, white background'),
-                description: '双区自动空调系统，配备变频压缩机、冷凝器与蒸发器，支持前排座椅加热与快速制冷功能。',
+                description: '双区自动空调系统，配备变频压缩机、冷凝器与蒸发器，支持前排座椅加热与快速制冷功能，提供舒适的驾乘环境。',
                 specs: {
                     '类型': '双区自动空调',
                     '压缩机': '变频涡旋',
                     '制冷剂': 'R-1234yf',
                     '功能': '座椅加热',
                     '滤芯': '活性炭过滤',
-                    '出风量': '约 450 m³/h'
+                    '出风量': '约 420 m³/h'
                 }
             },
             sunroof: {
                 name: '天窗',
-                nameEn: 'Panoramic Sunroof',
+                nameEn: 'Sunroof',
                 icon: '🌞',
-                image: makeImage('automotive panoramic sunroof with glass panel, sunshade, electric motor, automotive interior photo, white background, studio lighting'),
-                description: '全景天窗系统，包含前后两片玻璃面板与电动遮阳帘，支持一键开启与防夹功能，提升车内采光与视野。',
+                image: makeImage('automotive sunroof with glass panel, sunshade, electric motor, automotive interior photo, white background, studio lighting'),
+                description: '电动天窗系统，包含玻璃面板与电动遮阳帘，支持一键开启与防夹功能，提升车内采光与通风。',
                 specs: {
-                    '类型': '全景天窗',
-                    '面板': '双片玻璃',
+                    '类型': '电动天窗',
+                    '面板': '单片玻璃',
                     '开启方式': '滑动/翘起',
                     '遮阳帘': '电动织物',
                     '安全': '防夹功能',
-                    '面积': '约 0.8 m²'
+                    '面积': '约 0.45 m²'
                 }
             },
             audioSystem: {
                 name: '音响系统',
                 nameEn: 'Harman Kardon Audio',
                 icon: '🔊',
-                image: makeImage('volkswagen golf MK8 Harman Kardon premium audio system with speakers, subwoofer, amplifier, automotive interior photo, white background'),
-                description: 'Harman Kardon 高级音响系统，配备 8 扬声器与独立低音炮，支持 Dolby Atmos 环绕音效，提供沉浸式听觉体验。',
+                image: makeImage('volkswagen golf GTI MK8 Harman Kardon premium audio system with speakers, subwoofer, amplifier, automotive interior photo, white background'),
+                description: 'Harman Kardon 高级音响系统，配备 6 扬声器与独立低音炮，支持多种音效模式，提供沉浸式听觉体验。',
                 specs: {
                     '品牌': 'Harman Kardon',
-                    '扬声器': '8 个',
+                    '扬声器': '6 个',
                     '低音炮': '独立箱体',
-                    '功放': '400W 峰值',
-                    '音效': 'Dolby Atmos',
+                    '功放': '320W 峰值',
+                    '音效': '环绕声',
                     '调音': '多种音效模式'
                 }
             }
         };
 
         // 整车展示大图
-        const carOverviewImage = makeImage('volkswagen golf 2024 MK8.5 red kings red hatchback full car exterior three quarter front view, professional automotive photography, white background, studio lighting, sharp LED headlights, modern design, photorealistic, 8k');
+        const carOverviewImage = makeImage('volkswagen golf GTI 2021 MK8 red hatchback full car exterior three quarter front view, IQ.LIGHT LED headlight with red accent, honeycomb grille, sport bumper, professional automotive photography, white background, studio lighting, sharp LED headlights, modern hot hatch design, photorealistic, 8k');
         // 备选角度图
-        const carOverviewImageRear = makeImage('volkswagen golf 2024 MK8.5 red hatchback rear three quarter view, LED taillights, dynamic stance, automotive product photo, white background, studio lighting, photorealistic, 8k');
+        const carOverviewImageRear = makeImage('volkswagen golf GTI 2021 MK8 red hatchback rear three quarter view, LED taillights, sport exhaust, dynamic stance, automotive product photo, white background, studio lighting, photorealistic, 8k');
 
         // 预加载缓存（避免重复请求）
         const imageCache = new Map();
@@ -1133,16 +1294,6 @@
             const canvas = document.getElementById('three-canvas');
             const container = document.getElementById('viewer-container');
 
-            // 预加载所有图片（带进度）
-            const progressFill = document.getElementById('loadProgressFill');
-            const progressText = document.getElementById('loadProgressText');
-            const loadingText = document.querySelector('.loading-text');
-            loadingText.textContent = '正在加载零件图片...';
-            await preloadAllImages((percent) => {
-                progressFill.style.width = percent + '%';
-                progressText.textContent = percent + '%';
-            });
-
             // 场景设置
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0xffffff);
@@ -1162,8 +1313,8 @@
             controls = new OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
-            controls.minDistance = 4;
-            controls.maxDistance = 25;
+            controls.minDistance = 1;
+            controls.maxDistance = 35;
             controls.target.set(0, 1.35, 0);
 
             // 设置灯光
@@ -1171,27 +1322,206 @@
             
             // 创建地面
             createFloor();
-            
-            // 创建汽车零件
-            createCarParts();
-            
-            // 设置UI
-            setupUI();
-
-            // 初始化悬停交互
-            setupHoverInteraction();
-
-            // 初始化模态框
-            setupCarModal();
 
             // 窗口大小调整
             window.addEventListener('resize', onWindowResize);
+
+            // 加载 GLB 模型
+            loadGLBModel();
+        }
+
+        function loadGLBModel() {
+            const progressFill = document.getElementById('loadProgressFill');
+            const progressText = document.getElementById('loadProgressText');
+            const loadingText = document.querySelector('.loading-text');
             
-            // 隐藏加载画面
-            setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 300);
+            loadingText.textContent = '正在加载3D模型... 0%';
             
-            // 开始动画循环
-            animate();
+            const loader = new GLTFLoader();
+            loader.load(
+                'models/2021_volkswagen_golf_gti.glb',
+                function (gltf) {
+                    // 模型下载完成，开始处理阶段
+                    updateLoadingProgress(progressFill, progressText, loadingText, 45, '正在处理模型...');
+                    
+                    gltfModel = gltf.scene;
+                    
+                    // 计算模型边界并居中缩放
+                    setTimeout(() => {
+                        updateLoadingProgress(progressFill, progressText, loadingText, 50, '正在调整模型尺寸...');
+                        
+                        const box = new THREE.Box3().setFromObject(gltfModel);
+                        const center = box.getCenter(new THREE.Vector3());
+                        const size = box.getSize(new THREE.Vector3());
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        
+                        gltfModel.position.sub(center);
+                        gltfModel.scale.multiplyScalar(3 / maxDim);
+                        
+                        scene.add(gltfModel);
+
+                        // 遍历所有子 Mesh，保存绝对坐标并优化材质
+                        updateLoadingProgress(progressFill, progressText, loadingText, 55, '正在优化材质...');
+                        allMeshes = [];
+                        const totalMeshes = gltfModel.children.length + 1;
+                        let processedMeshes = 0;
+                        
+                        gltfModel.traverse((child) => {
+                            if (child instanceof THREE.Mesh) {
+                                // 保存原厂绝对位置和旋转（保底防穿模）
+                                child.userData.targetPos = child.position.clone();
+                                child.userData.targetRot = child.rotation.clone();
+                                child.userData.targetScale = child.scale.clone();
+                                
+                                // 优化材质
+                                optimizeMaterial(child);
+                                
+                                allMeshes.push(child);
+                            }
+                            processedMeshes++;
+                            const meshPercent = 55 + Math.round((processedMeshes / totalMeshes) * 20);
+                            updateLoadingProgress(progressFill, progressText, loadingText, meshPercent, '正在优化材质...');
+                        });
+
+                        // 执行智能分组绑定
+                        updateLoadingProgress(progressFill, progressText, loadingText, 78, '正在分组零件...');
+                        buildAssemblySteps();
+
+                        // 预加载图片
+                        updateLoadingProgress(progressFill, progressText, loadingText, 82, '正在加载图片资源...');
+                        preloadAllImages((percent) => {
+                            updateLoadingProgress(progressFill, progressText, loadingText, 82 + Math.round(percent * 0.15), '正在加载图片资源...');
+                        }).then(() => {
+                            // 设置UI
+                            updateLoadingProgress(progressFill, progressText, loadingText, 98, '正在初始化界面...');
+                            setupUI();
+
+                            // 初始化悬停交互
+                            setupHoverInteraction();
+
+                            // 初始化模态框
+                            setupCarModal();
+
+                            // 隐藏加载画面
+                            updateLoadingProgress(progressFill, progressText, loadingText, 100, '加载完成！');
+                            setTimeout(() => { 
+                                document.getElementById('loading').classList.add('hidden'); 
+                            }, 300);
+                            
+                            // 开始动画循环
+                            animate();
+
+                            console.log('=== 模型加载完成 ===');
+                            console.log(`总网格数量: ${allMeshes.length}`);
+                            console.log('=== 所有零件名称列表 ===');
+                            allMeshes.forEach((mesh, i) => {
+                                console.log(`[${i}] ${mesh.name}`);
+                            });
+                            console.log('装配步骤分组结果:');
+                            assemblySteps.forEach((step, index) => {
+                                console.log(`${index + 1}. ${step.title}: ${step.meshes.length} 个零件`);
+                                if (step.meshes.length > 0) {
+                                    step.meshes.forEach((m, i) => {
+                                        console.log(`   - ${m.name}`);
+                                    });
+                                }
+                            });
+                            const unmatched = allMeshes.filter(m => m.userData.stepIndex === -1);
+                            if (unmatched.length > 0) {
+                                console.log('=== 未匹配的零件 ===');
+                                unmatched.forEach(m => console.log(`- ${m.name}`));
+                            }
+                        });
+                    }, 50);
+                },
+                function (xhr) {
+                    // 模型下载阶段：0-45%
+                    const downloadPercent = Math.round((xhr.loaded / xhr.total) * 45);
+                    updateLoadingProgress(progressFill, progressText, loadingText, downloadPercent, '正在下载模型...');
+                },
+                function (error) {
+                    console.error('加载模型时出错:', error);
+                    loadingText.textContent = '加载失败，请检查控制台';
+                    loadingText.style.color = '#ff4444';
+                }
+            );
+        }
+        
+        function updateLoadingProgress(progressFill, progressText, loadingText, percent, message) {
+            progressFill.style.width = percent + '%';
+            progressText.textContent = percent + '%';
+            loadingText.textContent = message || `正在加载3D模型... ${percent}%`;
+        }
+
+        function buildAssemblySteps() {
+            // 初始化装配步骤（固定18步）
+            assemblySteps = [];
+            
+            partGroupMapping.forEach((mapping, key) => {
+                assemblySteps.push({
+                    id: key + 1,
+                    title: mapping.name,
+                    description: `包含 ${mapping.keywords.join(', ')} 等零件`,
+                    part: `step_${key}`,
+                    meshes: []
+                });
+            });
+
+            // 遍历所有 mesh，根据关键字匹配到对应步骤
+            allMeshes.forEach((mesh) => {
+                const meshName = mesh.name || '';
+                let matched = false;
+
+                assemblySteps.forEach((step) => {
+                    if (matched) return;
+                    
+                    const keywords = partGroupMapping[step.id - 1].keywords;
+                    for (const keyword of keywords) {
+                        if (meshName.toLowerCase().includes(keyword.toLowerCase())) {
+                            step.meshes.push(mesh);
+                            mesh.userData.stepIndex = step.id - 1;
+                            mesh.userData.partName = step.part;
+                            matched = true;
+                            break;
+                        }
+                    }
+                });
+
+                // 如果没有匹配到任何步骤，默认隐藏但不参与装配流程
+                if (!matched) {
+                    mesh.userData.stepIndex = -1;
+                    mesh.visible = false;
+                }
+            });
+
+            // 初始化所有参与装配的 mesh 为隐藏状态
+            assemblySteps.forEach((step) => {
+                step.meshes.forEach((mesh) => {
+                    mesh.visible = false;
+                });
+            });
+
+            // 创建 parts 对象用于 UI 控制
+            parts = {};
+            assemblySteps.forEach((step) => {
+                parts[step.part] = {
+                    visible: false,
+                    userData: { partName: step.part },
+                    traverse: function(callback) {
+                        step.meshes.forEach(callback);
+                    }
+                };
+            });
+
+            console.log('=== 装配步骤分组结果（共18步）===');
+            assemblySteps.forEach((step, index) => {
+                console.log(`${index + 1}. ${step.title}: ${step.meshes.length} 个零件`);
+                if (step.meshes.length > 0) {
+                    step.meshes.forEach((m, i) => {
+                        console.log(`   - ${m.name}`);
+                    });
+                }
+            });
         }
 
         // 悬停交互 - 射线检测
@@ -1228,40 +1558,114 @@
             return null;
         }
 
-        function showTooltip(partName, clientX, clientY) {
-            const data = partData[partName];
-            if (!data) return;
+        function getColorName(hex) {
+            const r = (hex >> 16) & 255;
+            const g = (hex >> 8) & 255;
+            const b = hex & 255;
+            
+            const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+            
+            if (gray < 30) return '纯黑色';
+            if (gray < 60) return '深灰色';
+            if (gray < 120) return '灰色';
+            if (gray < 180) return '浅灰色';
+            if (gray > 240) return '纯白色';
+            
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            const delta = max - min;
+            
+            if (delta < 15) return '银灰色';
+            
+            const saturation = delta / max;
+            
+            if (saturation < 0.2) return '淡色';
+            
+            if (r === max) {
+                const hue = ((g - b) / delta) * 60;
+                if (hue < 30) return '红色';
+                if (hue < 90) return '橙色';
+                return '黄色';
+            }
+            if (g === max) {
+                const hue = (2 + (b - r) / delta) * 60;
+                if (hue < 150) return '黄绿色';
+                if (hue < 210) return '绿色';
+                return '青绿色';
+            }
+            if (b === max) {
+                const hue = (4 + (r - g) / delta) * 60;
+                if (hue < 270) return '青色';
+                if (hue < 330) return '蓝色';
+                return '紫色';
+            }
+            
+            return '标准色';
+        }
+
+        function showTooltip(mesh, clientX, clientY) {
+            const partName = mesh.userData.partName;
+            const stepIndex = mesh.userData.stepIndex;
+            
+            // 获取步骤信息
+            const stepInfo = stepIndex >= 0 && stepInfoData[stepIndex] ? stepInfoData[stepIndex] : {
+                icon: '🔧',
+                title: mesh.name || '未知零件',
+                desc: 'GLB 模型零部件，属于汽车装配系统的一部分。',
+                image: null,
+                specs: {}
+            };
+            
             const tooltip = document.getElementById('partTooltip');
 
-            // 渲染规格
-            const specsHtml = Object.entries(data.specs).map(([k, v]) =>
-                `<div class="label">${k}</div><div class="value">${v}</div>`
-            ).join('');
+            // 获取材质颜色信息（转换为文字描述）
+            const material = mesh.material;
+            let colorInfo = '标准色';
+            if (material) {
+                const mat = Array.isArray(material) ? material[0] : material;
+                if (mat.color) {
+                    const hex = mat.color.getHex();
+                    colorInfo = getColorName(hex);
+                }
+            }
+
+            // 渲染 specs HTML
+            let specsHtml = '';
+            Object.entries(stepInfo.specs || {}).forEach(([key, value]) => {
+                specsHtml += `<div class="tooltip-specs-row"><div class="label">${key}</div><div class="value">${value}</div></div>`;
+            });
+            specsHtml += `<div class="tooltip-specs-row"><div class="label">颜色</div><div class="value">${colorInfo}</div></div>`;
+
+            // 图片部分 - 如果有步骤图片显示步骤图片，否则显示默认样式
+            let imageHtml = '';
+            if (stepInfo.image) {
+                imageHtml = `<div class="tooltip-image">
+                    <img src="${stepInfo.image}" alt="${stepInfo.title}" 
+                        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a1a2e,#2d3748)';this.parentElement.innerHTML='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#888;font-size:36px;\\'>${stepInfo.icon}</div>'" />
+                </div>`;
+            } else {
+                imageHtml = `<div class="tooltip-image" style="background: linear-gradient(135deg, #1a1a2e, #2d3748);">
+                    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#888;font-size:36px;">${stepInfo.icon}</div>
+                </div>`;
+            }
 
             tooltip.innerHTML = `
                 <div class="tooltip-header">
-                    <div class="tooltip-icon">${data.icon}</div>
+                    <div class="tooltip-icon">${stepInfo.icon}</div>
                     <div class="tooltip-titles">
-                        <h4>${data.name}</h4>
-                        <p>${data.nameEn}</p>
+                        <h4>${stepInfo.title}</h4>
+                        <p>${assemblySteps[stepIndex]?.title || '零部件'}</p>
                     </div>
                 </div>
-                <div class="tooltip-image">
-                    <img src="${data.image}" alt="${data.name}" />
-                </div>
-                <div class="tooltip-desc">${data.description}</div>
+                ${imageHtml}
+                <div class="tooltip-desc">${stepInfo.desc}</div>
                 <div class="tooltip-specs">${specsHtml}</div>
             `;
 
-            // 计算位置（避免超出屏幕）
-            const tooltipW = 320, tooltipH = 380;
-            let left = clientX + 18;
-            let top = clientY + 18;
-            if (left + tooltipW > window.innerWidth) left = clientX - tooltipW - 18;
-            if (top + tooltipH > window.innerHeight) top = clientY - tooltipH - 18;
+            // 添加高亮效果
+            highlightMesh(mesh);
 
-            tooltip.style.left = left + 'px';
-            tooltip.style.top = top + 'px';
+            // 直接显示（固定在左上角）
             tooltip.classList.add('show');
         }
 
@@ -1269,6 +1673,44 @@
             const tooltip = document.getElementById('partTooltip');
             tooltip.classList.remove('show');
             hoveredPartName = null;
+            
+            // 恢复高亮的材质
+            restoreHighlightedMesh();
+        }
+
+        let highlightedMesh = null;
+        let originalMaterial = null;
+
+        function highlightMesh(mesh) {
+            // 先恢复之前的高亮
+            restoreHighlightedMesh();
+            
+            highlightedMesh = mesh;
+            
+            // 保存原始材质并应用高亮效果
+            if (mesh.material) {
+                originalMaterial = mesh.material.clone();
+                
+                // 创建高亮材质（发光效果）
+                const highlightMat = mesh.material.clone();
+                if (highlightMat.emissive) {
+                    highlightMat.emissive.setHex(0x4488ff);
+                    highlightMat.emissiveIntensity = 0.6;
+                }
+                if (highlightMat.color) {
+                    highlightMat.color.offsetHSL(0, 0, 0.15);
+                }
+                
+                mesh.material = highlightMat;
+            }
+        }
+
+        function restoreHighlightedMesh() {
+            if (highlightedMesh && originalMaterial) {
+                highlightedMesh.material = originalMaterial;
+                highlightedMesh = null;
+                originalMaterial = null;
+            }
         }
 
         function checkHover() {
@@ -1287,27 +1729,23 @@
 
             const intersects = raycaster.intersectObjects(meshes, false);
             if (intersects.length > 0) {
-                const partName = findPartFromObject(intersects[0].object);
-                if (partName && partName !== hoveredPartName) {
-                    hoveredPartName = partName;
+                const mesh = intersects[0].object;
+                const partName = findPartFromObject(mesh);
+                const meshName = mesh.name || '无名零件';
+                
+                // 使用 mesh 的唯一标识作为 hoveredPartName
+                const uniqueId = partName + '_' + meshName;
+                
+                if (uniqueId !== hoveredPartName) {
+                    hoveredPartName = uniqueId;
                     if (mouse.clientX !== undefined) {
-                        showTooltip(partName, mouse.clientX, mouse.clientY);
-                    }
-                } else if (partName === hoveredPartName) {
-                    // 跟随鼠标移动
-                    const tooltip = document.getElementById('partTooltip');
-                    if (mouse.clientX !== undefined) {
-                        const tooltipW = 320, tooltipH = 380;
-                        let left = mouse.clientX + 18;
-                        let top = mouse.clientY + 18;
-                        if (left + tooltipW > window.innerWidth) left = mouse.clientX - tooltipW - 18;
-                        if (top + tooltipH > window.innerHeight) top = mouse.clientY - tooltipH - 18;
-                        tooltip.style.left = left + 'px';
-                        tooltip.style.top = top + 'px';
+                        showTooltip(mesh, mouse.clientX, mouse.clientY);
                     }
                 }
             } else {
-                if (hoveredPartName) hideTooltip();
+                if (hoveredPartName) {
+                    hideTooltip();
+                }
             }
 
             // 鼠标光标样式
@@ -1344,13 +1782,83 @@
             });
         }
 
+        function optimizeMaterial(mesh) {
+            const meshName = mesh.name.toLowerCase();
+            let material = mesh.material;
+
+            // 如果是材质数组，处理每个材质
+            if (Array.isArray(material)) {
+                material.forEach(mat => enhanceMaterial(mat, meshName));
+            } else {
+                enhanceMaterial(material, meshName);
+            }
+        }
+
+        function enhanceMaterial(mat, meshName) {
+            // 创建新的标准材质，如果原材质不是 MeshStandardMaterial
+            if (!(mat instanceof THREE.MeshStandardMaterial)) {
+                const newMat = new THREE.MeshStandardMaterial();
+                
+                // 复制属性
+                if (mat.color) newMat.color.copy(mat.color);
+                if (mat.map) newMat.map = mat.map;
+                if (mat.normalMap) newMat.normalMap = mat.normalMap;
+                if (mat.roughnessMap) newMat.roughnessMap = mat.roughnessMap;
+                if (mat.metalnessMap) newMat.metalnessMap = mat.metalnessMap;
+                if (mat.alphaMap) newMat.alphaMap = mat.alphaMap;
+                if (mat.transparent !== undefined) newMat.transparent = mat.transparent;
+                if (mat.opacity !== undefined) newMat.opacity = mat.opacity;
+                
+                mat = newMat;
+            }
+
+            // 豪车车漆流线质感 - 检测漆面/车身外壳零件
+            const isPaint = meshName.includes('paint') || meshName.includes('body') || 
+                           meshName.includes('car_paint') || meshName.includes('ext_body');
+            
+            // 检测黑色暗色零件
+            const isBlackPart = meshName.includes('tire') || meshName.includes('leather') ||
+                               meshName.includes('fabric') || meshName.includes('black') ||
+                               meshName.includes('dark') || meshName.includes('rubber');
+
+            if (isPaint) {
+                // 高级物理材质（PBR）车漆
+                mat.metalness = 0.85;
+                mat.roughness = 0.25;
+                mat.clearcoat = 0.9;
+                mat.clearcoatRoughness = 0.15;
+                mat.envMapIntensity = 1.2;
+            } else if (isBlackPart) {
+                // 改善黑色零部件可见性
+                mat.metalness = Math.max(mat.metalness || 0.1, 0.05);
+                mat.roughness = Math.min(mat.roughness || 0.8, 0.7);
+                
+                // 添加极微弱的自发光，使纹理可见
+                if (!mat.emissive || mat.emissive.r === 0 && mat.emissive.g === 0 && mat.emissive.b === 0) {
+                    mat.emissive = new THREE.Color(0x1a1a1a);
+                    mat.emissiveIntensity = 0.08;
+                }
+            } else {
+                // 默认优化
+                if (mat.metalness === undefined || mat.metalness === 0) {
+                    mat.metalness = 0.3;
+                }
+                if (mat.roughness === undefined || mat.roughness === 1) {
+                    mat.roughness = 0.5;
+                }
+            }
+
+            // 确保材质属性正确设置
+            mat.needsUpdate = true;
+        }
+
         function setupLights() {
             // 环境光
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
             scene.add(ambientLight);
 
             // 主光源
-            const mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            const mainLight = new THREE.DirectionalLight(0xffffff, 0.9);
             mainLight.position.set(10, 15, 10);
             mainLight.castShadow = true;
             mainLight.shadow.mapSize.width = 2048;
@@ -1360,9 +1868,26 @@
             scene.add(mainLight);
 
             // 补光
-            const fillLight = new THREE.DirectionalLight(0xcccccc, 0.4);
+            const fillLight = new THREE.DirectionalLight(0xe0e0e0, 0.5);
             fillLight.position.set(-10, 8, -8);
             scene.add(fillLight);
+
+            // 底部补偿光（由下往上打的弱平行光）- 照亮底盘和轮胎底部
+            const bottomFillLight = new THREE.DirectionalLight(0x8899aa, 0.35);
+            bottomFillLight.position.set(0, -5, 0);
+            bottomFillLight.target.position.set(0, 5, 0);
+            scene.add(bottomFillLight);
+            scene.add(bottomFillLight.target);
+
+            // 右侧补光 - 照亮车身右侧
+            const rightFillLight = new THREE.DirectionalLight(0xccccdd, 0.3);
+            rightFillLight.position.set(0, 5, -15);
+            scene.add(rightFillLight);
+
+            // 穹顶灯（高空四周）- 提供柔和的环境照明
+            const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x8899aa, 0.4);
+            hemisphereLight.position.set(0, 20, 0);
+            scene.add(hemisphereLight);
         }
 
         function createFloor() {
@@ -1379,1010 +1904,6 @@
         }
 
         function createCarParts() {
-            // 材质创建函数
-            const metalMat = (color, roughness = 0.4) => new THREE.MeshStandardMaterial({
-                color, roughness, metalness: 0.85
-            });
-
-            const plasticMat = (color) => new THREE.MeshStandardMaterial({
-                color, roughness: 0.5, metalness: 0.1
-            });
-
-            const rubberMat = (color) => new THREE.MeshStandardMaterial({
-                color, roughness: 0.85, metalness: 0.05
-            });
-
-            const glassMat = new THREE.MeshStandardMaterial({
-                color: 0x1e40af,
-                roughness: 0.05,
-                metalness: 0.1,
-                transparent: true,
-                opacity: 0.35
-            });
-
-            // 1. 底盘车架
-            const chassis = new THREE.Group();
-            const mainFrame = new THREE.Mesh(new THREE.BoxGeometry(4.5, 0.15, 1.8), metalMat(partColors.chassis));
-            mainFrame.position.y = 0.35;
-            mainFrame.castShadow = true;
-            chassis.add(mainFrame);
-
-            const frontSubFrame = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.12, 1.6), metalMat(partColors.chassis));
-            frontSubFrame.position.set(1.8, 0.2, 0);
-            chassis.add(frontSubFrame);
-
-            const rearSubFrame = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.12, 1.6), metalMat(partColors.chassis));
-            rearSubFrame.position.set(-1.8, 0.2, 0);
-            chassis.add(rearSubFrame);
-
-            chassis.visible = false;
-            chassis.userData.originalPosition = chassis.position.clone();
-            parts.chassis = chassis;
-            scene.add(chassis);
-
-            // 2. 发动机
-            const engine = new THREE.Group();
-            const engineBlock = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.5, 0.6), metalMat(partColors.engine));
-            engineBlock.position.set(1.7, 0.8, 0);
-            engineBlock.castShadow = true;
-            engine.add(engineBlock);
-
-            const cylinderHead = new THREE.Mesh(new THREE.BoxGeometry(0.75, 0.25, 0.55), metalMat(0xdc2626));
-            cylinderHead.position.set(1.7, 1.2, 0);
-            engine.add(cylinderHead);
-
-            const oilPan = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.15, 0.5), metalMat(0x2d3748));
-            oilPan.position.set(1.7, 0.5, 0);
-            engine.add(oilPan);
-
-            engine.visible = false;
-            engine.userData.originalPosition = engine.position.clone();
-            parts.engine = engine;
-            scene.add(engine);
-
-            // 3. 变速箱
-            const transmission = new THREE.Group();
-            const transBox = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.35, 0.5), metalMat(partColors.transmission));
-            transBox.position.set(0.8, 0.65, 0);
-            transBox.castShadow = true;
-            transmission.add(transBox);
-
-            const driveshaft = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 2.5, 16), metalMat(0x4a5568));
-            driveshaft.rotation.z = Math.PI / 2;
-            driveshaft.position.set(-0.4, 0.6, 0);
-            transmission.add(driveshaft);
-
-            transmission.visible = false;
-            transmission.userData.originalPosition = transmission.position.clone();
-            parts.transmission = transmission;
-            scene.add(transmission);
-
-            // 4. 排气系统
-            const exhaust = new THREE.Group();
-            // 主排气管 - 从发动机位置向后延伸到车尾（往中间挪，避免与车轮穿模）
-            const exhaustMain = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 3.2, 16), metalMat(partColors.exhaust));
-            exhaustMain.rotation.z = Math.PI / 2;
-            exhaustMain.position.set(-0.5, 0.28, -0.5); // 往中间挪动，避免与后轮穿模
-            exhaust.add(exhaustMain);
-
-            // 前段排气管 - 连接发动机
-            const exhaustFront = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.06, 1.2, 16), metalMat(partColors.exhaust));
-            exhaustFront.rotation.z = Math.PI / 2;
-            exhaustFront.position.set(1.1, 0.32, -0.5); // 往中间挪动
-            exhaust.add(exhaustFront);
-
-            // 消音器 - 在车尾下方
-            const muffler = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.22, 0.18), metalMat(partColors.exhaust));
-            muffler.position.set(-1.8, 0.3, -0.5); // 往中间挪动
-            muffler.castShadow = true;
-            exhaust.add(muffler);
-
-            // 排气尾喉 - 在车尾最末端（单边双出，稍微偏左）
-            const exhaustTailpipe1 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 0.25, 16), metalMat(0xf59e0b));
-            exhaustTailpipe1.rotation.z = Math.PI / 2;
-            exhaustTailpipe1.position.set(-2.15, 0.35, -0.35); // 往中间挪动
-            exhaust.add(exhaustTailpipe1);
-
-            const exhaustTailpipe2 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 0.25, 16), metalMat(0xf59e0b));
-            exhaustTailpipe2.rotation.z = Math.PI / 2;
-            exhaustTailpipe2.position.set(-2.15, 0.35, -0.55); // 往中间挪动
-            exhaust.add(exhaustTailpipe2);
-
-            exhaust.visible = false;
-            exhaust.userData.originalPosition = exhaust.position.clone();
-            parts.exhaust = exhaust;
-            scene.add(exhaust);
-
-            // 5. 进气系统
-            const intakeSystem = new THREE.Group();
-            const airFilter = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.35, 0.25), plasticMat(0x9ca3af));
-            airFilter.position.set(1.3, 0.8, 0.75);
-            airFilter.castShadow = true;
-            intakeSystem.add(airFilter);
-
-            const intakePipe = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 0.6, 16), plasticMat(0x718096));
-            intakePipe.position.set(1.0, 0.95, 0.9);
-            intakePipe.rotation.x = Math.PI / 6;
-            intakeSystem.add(intakePipe);
-
-            const throttleBody = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.15, 16), metalMat(0x4a5568));
-            throttleBody.position.set(1.5, 0.95, 0.55);
-            intakeSystem.add(throttleBody);
-
-            intakeSystem.visible = false;
-            intakeSystem.userData.originalPosition = intakeSystem.position.clone();
-            parts.intakeSystem = intakeSystem;
-            scene.add(intakeSystem);
-
-            // 6. 前悬挂
-            const frontSuspension = new THREE.Group();
-            for (let i = -1; i <= 1; i += 2) {
-                const lowerArm = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.06, 0.15), metalMat(partColors.frontSuspension));
-                lowerArm.position.set(1.8, 0.45, i * 0.7);
-                lowerArm.castShadow = true;
-                frontSuspension.add(lowerArm);
-
-                for (let j = 0; j < 5; j++) {
-                    const coil = new THREE.Mesh(new THREE.TorusGeometry(0.1, 0.02, 8, 12), metalMat(0x9ca3af));
-                    coil.rotation.x = Math.PI / 2 + j * 0.35;
-                    coil.position.set(1.8, 0.5 + j * 0.06, i * 0.85);
-                    frontSuspension.add(coil);
-                }
-
-                const strut = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 0.45, 16), metalMat(partColors.frontSuspension));
-                strut.position.set(1.8, 0.9, i * 0.85);
-                strut.castShadow = true;
-                frontSuspension.add(strut);
-
-                const knuckle = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.25, 0.15), metalMat(0x2d3748));
-                knuckle.position.set(1.8, 0.57, i * 0.95);
-                knuckle.castShadow = true;
-                frontSuspension.add(knuckle);
-            }
-            frontSuspension.visible = false;
-            frontSuspension.userData.originalPosition = frontSuspension.position.clone();
-            parts.frontSuspension = frontSuspension;
-            scene.add(frontSuspension);
-
-            // 5. 后悬挂
-            const rearSuspension = new THREE.Group();
-            for (let i = -1; i <= 1; i += 2) {
-                const trailingArm = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.06, 0.15), metalMat(partColors.rearSuspension));
-                trailingArm.position.set(-1.8, 0.45, i * 0.7);
-                trailingArm.castShadow = true;
-                rearSuspension.add(trailingArm);
-
-                for (let j = 0; j < 4; j++) {
-                    const coil = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.02, 8, 12), metalMat(0x9ca3af));
-                    coil.rotation.x = Math.PI / 2 + j * 0.38;
-                    coil.position.set(-1.8, 0.49 + j * 0.06, i * 0.85);
-                    rearSuspension.add(coil);
-                }
-
-                const shock = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.4, 12), metalMat(0x2d3748));
-                shock.position.set(-1.7, 0.83, i * 0.7);
-                shock.castShadow = true;
-                rearSuspension.add(shock);
-
-                const knuckle = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.25, 0.15), metalMat(0x2d3748));
-                knuckle.position.set(-1.8, 0.57, i * 0.95);
-                knuckle.castShadow = true;
-                rearSuspension.add(knuckle);
-            }
-            rearSuspension.visible = false;
-            rearSuspension.userData.originalPosition = rearSuspension.position.clone();
-            parts.rearSuspension = rearSuspension;
-            scene.add(rearSuspension);
-
-            // 9. 刹车系统
-            const brakeSystem = new THREE.Group();
-            // 前刹车盘
-            for (let i = -1; i <= 1; i += 2) {
-                const frontBrakeDisc = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.38, 0.03, 32), metalMat(0x4a5568));
-                frontBrakeDisc.position.set(1.85, 0.57, i * 1.05);
-                frontBrakeDisc.rotation.x = Math.PI / 2;
-                brakeSystem.add(frontBrakeDisc);
-
-                const frontCaliper = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.18, 0.25), metalMat(0x1a1a1a));
-                frontCaliper.position.set(1.88, 0.57, i * 0.98);
-                brakeSystem.add(frontCaliper);
-            }
-            // 后刹车盘
-            for (let i = -1; i <= 1; i += 2) {
-                const rearBrakeDisc = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.33, 0.025, 32), metalMat(0x4a5568));
-                rearBrakeDisc.position.set(-1.85, 0.57, i * 1.05);
-                rearBrakeDisc.rotation.x = Math.PI / 2;
-                brakeSystem.add(rearBrakeDisc);
-
-                const rearCaliper = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.15, 0.2), metalMat(0x1a1a1a));
-                rearCaliper.position.set(-1.88, 0.57, i * 0.98);
-                brakeSystem.add(rearCaliper);
-            }
-            // 刹车助力器
-            const brakeBooster = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.2, 0.25, 16), plasticMat(0x374151));
-            brakeBooster.position.set(0.55, 0.95, 0);
-            brakeSystem.add(brakeBooster);
-
-            brakeSystem.visible = false;
-            brakeSystem.userData.originalPosition = brakeSystem.position.clone();
-            parts.brakeSystem = brakeSystem;
-            scene.add(brakeSystem);
-
-            // 10. 前车轮
-            const frontWheels = new THREE.Group();
-            for (let i = -1; i <= 1; i += 2) {
-                const tire = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.52, 0.3, 32), rubberMat(partColors.frontWheels));
-                tire.position.set(1.8, 0.57, i * 1.05);
-                tire.rotation.x = Math.PI / 2;
-                tire.castShadow = true;
-                frontWheels.add(tire);
-
-                const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.38, 0.22, 32), metalMat(0xf6e05e));
-                rim.position.set(1.8, 0.57, i * 1.05);
-                rim.rotation.x = Math.PI / 2;
-                rim.castShadow = true;
-                frontWheels.add(rim);
-
-                const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.27, 16), metalMat(0x4a5568));
-                hub.position.set(1.8, 0.57, i * 1.05);
-                hub.rotation.x = Math.PI / 2;
-                frontWheels.add(hub);
-
-                for (let j = 0; j < 5; j++) {
-                    const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.28, 0.025), metalMat(0xf6e05e));
-                    spoke.position.set(1.8, 0.57, i * 1.05);
-                    spoke.rotation.y = (j / 5) * Math.PI * 2;
-                    frontWheels.add(spoke);
-                }
-            }
-            frontWheels.visible = false;
-            frontWheels.userData.originalPosition = frontWheels.position.clone();
-            parts.frontWheels = frontWheels;
-            scene.add(frontWheels);
-
-            // 7. 后车轮
-            const rearWheels = new THREE.Group();
-            for (let i = -1; i <= 1; i += 2) {
-                const tire = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.52, 0.3, 32), rubberMat(partColors.rearWheels));
-                tire.position.set(-1.8, 0.57, i * 1.05);
-                tire.rotation.x = Math.PI / 2;
-                tire.castShadow = true;
-                rearWheels.add(tire);
-
-                const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.38, 0.22, 32), metalMat(0xf6e05e));
-                rim.position.set(-1.8, 0.57, i * 1.05);
-                rim.rotation.x = Math.PI / 2;
-                rim.castShadow = true;
-                rearWheels.add(rim);
-
-                const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.27, 16), metalMat(0x4a5568));
-                hub.position.set(-1.8, 0.57, i * 1.05);
-                hub.rotation.x = Math.PI / 2;
-                rearWheels.add(hub);
-
-                for (let j = 0; j < 5; j++) {
-                    const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.28, 0.025), metalMat(0xf6e05e));
-                    spoke.position.set(-1.8, 0.57, i * 1.05);
-                    spoke.rotation.y = (j / 5) * Math.PI * 2;
-                    rearWheels.add(spoke);
-                }
-            }
-            rearWheels.visible = false;
-            rearWheels.userData.originalPosition = rearWheels.position.clone();
-            parts.rearWheels = rearWheels;
-            scene.add(rearWheels);
-
-            // 8. 车身外壳（完全封闭，中间空心）
-            const body = new THREE.Group();
-
-            // 底部完全封闭（加厚加宽，与底盘顶面精确对齐）
-            const bodyFloor = new THREE.Mesh(new THREE.BoxGeometry(4.6, 0.3, 2.0), plasticMat(partColors.body));
-            bodyFloor.position.set(0, 0.425, 0); // 与底盘顶面(y=0.425)对齐
-            bodyFloor.castShadow = true;
-            body.add(bodyFloor);
-
-            // 左侧墙 - 分成前后两段，中间留出窗户位置
-            // 左侧墙前段（引擎盖到A柱前）
-            const leftWallFront = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.0, 0.08), plasticMat(partColors.body));
-            leftWallFront.position.set(1.6, 0.775, 0.96); // 底部y=0.275，顶部y=1.275
-            leftWallFront.castShadow = true;
-            body.add(leftWallFront);
-
-            // 左侧墙后段（C柱后到车尾）
-            const leftWallRear = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.0, 0.08), plasticMat(partColors.body));
-            leftWallRear.position.set(-1.7, 0.775, 0.96);
-            leftWallRear.castShadow = true;
-            body.add(leftWallRear);
-
-            // 左侧门框下部（前门）
-            const leftDoorSill1 = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.4, 0.08), plasticMat(partColors.body));
-            leftDoorSill1.position.set(0.4, 0.475, 0.96); // 底部y=0.275，顶部y=0.675
-            body.add(leftDoorSill1);
-
-            // 左侧门框下部（后门）
-            const leftDoorSill2 = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.4, 0.08), plasticMat(partColors.body));
-            leftDoorSill2.position.set(-0.4, 0.475, 0.96);
-            body.add(leftDoorSill2);
-
-            // 右侧墙 - 分成前后两段
-            const rightWallFront = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.0, 0.08), plasticMat(partColors.body));
-            rightWallFront.position.set(1.6, 0.775, -0.96);
-            rightWallFront.castShadow = true;
-            body.add(rightWallFront);
-
-            const rightWallRear = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.0, 0.08), plasticMat(partColors.body));
-            rightWallRear.position.set(-1.7, 0.775, -0.96);
-            rightWallRear.castShadow = true;
-            body.add(rightWallRear);
-
-            const rightDoorSill1 = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.4, 0.08), plasticMat(partColors.body));
-            rightDoorSill1.position.set(0.4, 0.475, -0.96);
-            body.add(rightDoorSill1);
-
-            const rightDoorSill2 = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.4, 0.08), plasticMat(partColors.body));
-            rightDoorSill2.position.set(-0.4, 0.475, -0.96);
-            body.add(rightDoorSill2);
-
-            // 车头封板（降低高度，形成车头开口）
-            const frontBodyPanel = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.0, 2.0), plasticMat(partColors.body));
-            frontBodyPanel.position.set(2.24, 0.825, 0); // 底部 y=0.825-0.5=0.325，顶部 y=1.275
-            frontBodyPanel.castShadow = true;
-            body.add(frontBodyPanel);
-
-            // 车尾封板（底部与底盘底面精确对齐，高度延伸至后备箱下方）
-            const rearBodyPanel = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 2.0), plasticMat(partColors.body));
-            rearBodyPanel.position.set(-2.24, 1.075, 0); // 底部 y=1.075-0.8=0.275，顶部 y=1.875，与后备箱连接
-            rearBodyPanel.castShadow = true;
-            body.add(rearBodyPanel);
-
-            // 引擎盖
-            const hood = new THREE.Mesh(new THREE.BoxGeometry(1.3, 0.12, 1.92), plasticMat(partColors.body));
-            hood.position.set(1.55, 1.4, 0);
-            hood.castShadow = true;
-            body.add(hood);
-
-            const trunk = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.12, 1.82), plasticMat(partColors.body));
-            trunk.position.set(-1.45, 1.935, 0); // 底部 y=1.935-0.06=1.875，与车尾封板顶部连接
-            trunk.castShadow = true;
-            body.add(trunk);
-
-            const roof = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.2, 1.92), plasticMat(partColors.body));
-            roof.position.set(-0.05, 2.085, 0);
-            body.add(roof);
-
-            // A柱（前挡风玻璃两侧）
-            const frontPillarLeft = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.7, 0.12), plasticMat(partColors.body));
-            frontPillarLeft.position.set(0.5, 1.55, 0.92);
-            body.add(frontPillarLeft);
-            const frontPillarRight = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.7, 0.12), plasticMat(partColors.body));
-            frontPillarRight.position.set(0.5, 1.55, -0.92);
-            body.add(frontPillarRight);
-
-            // B柱（前后门之间）
-            const middlePillarLeft = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.9, 0.12), plasticMat(partColors.body));
-            middlePillarLeft.position.set(-0.1, 1.35, 0.92);
-            body.add(middlePillarLeft);
-            const middlePillarRight = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.9, 0.12), plasticMat(partColors.body));
-            middlePillarRight.position.set(-0.1, 1.35, -0.92);
-            body.add(middlePillarRight);
-
-            // C柱（后挡风玻璃两侧）
-            const rearPillarLeft = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.8, 0.12), plasticMat(partColors.body));
-            rearPillarLeft.position.set(-1.0, 1.45, 0.92);
-            body.add(rearPillarLeft);
-            const rearPillarRight = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.8, 0.12), plasticMat(partColors.body));
-            rearPillarRight.position.set(-1.0, 1.45, -0.92);
-            body.add(rearPillarRight);
-
-            // 前挡风玻璃
-            const windshield = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.7, 0.05), glassMat);
-            windshield.position.set(0.6, 1.5, 0);
-            windshield.rotation.y = Math.PI / 2;
-            body.add(windshield);
-
-            // 后挡风玻璃
-            const rearWindow = new THREE.Mesh(new THREE.BoxGeometry(1.3, 0.55, 0.05), glassMat);
-            rearWindow.position.set(-1.0, 1.4, 0);
-            rearWindow.rotation.y = Math.PI / 2;
-            body.add(rearWindow);
-
-            // 左前侧窗
-            const sideWindowFrontLeft = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.5, 0.05), glassMat);
-            sideWindowFrontLeft.position.set(0.4, 1.3, 0.98);
-            body.add(sideWindowFrontLeft);
-
-            // 左后侧窗
-            const sideWindowRearLeft = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.45, 0.05), glassMat);
-            sideWindowRearLeft.position.set(-0.5, 1.3, 0.98);
-            body.add(sideWindowRearLeft);
-
-            // 右前侧窗
-            const sideWindowFrontRight = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.5, 0.05), glassMat);
-            sideWindowFrontRight.position.set(0.4, 1.3, -0.98);
-            body.add(sideWindowFrontRight);
-
-            // 右后侧窗
-            const sideWindowRearRight = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.45, 0.05), glassMat);
-            sideWindowRearRight.position.set(-0.5, 1.3, -0.98);
-            body.add(sideWindowRearRight);
-
-            // 左前车门
-            const frontDoorLeft = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.85, 0.06), plasticMat(partColors.body));
-            frontDoorLeft.position.set(0.45, 0.775, 1.0);
-            frontDoorLeft.castShadow = true;
-            body.add(frontDoorLeft);
-
-            // 右前车门
-            const frontDoorRight = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.85, 0.06), plasticMat(partColors.body));
-            frontDoorRight.position.set(0.45, 0.775, -1.0);
-            frontDoorRight.castShadow = true;
-            body.add(frontDoorRight);
-
-            // 左后车门
-            const rearDoorLeft = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.06), plasticMat(partColors.body));
-            rearDoorLeft.position.set(-0.55, 0.775, 1.0);
-            rearDoorLeft.castShadow = true;
-            body.add(rearDoorLeft);
-
-            // 右后车门
-            const rearDoorRight = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.06), plasticMat(partColors.body));
-            rearDoorRight.position.set(-0.55, 0.775, -1.0);
-            rearDoorRight.castShadow = true;
-            body.add(rearDoorRight);
-
-            // 后视镜（左侧）
-            const leftMirrorArm = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.05, 0.05), plasticMat(partColors.body));
-            leftMirrorArm.position.set(0.9, 1.35, 1.15);
-            body.add(leftMirrorArm);
-
-            const leftMirrorHead = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.12, 0.08), plasticMat(partColors.body));
-            leftMirrorHead.position.set(0.78, 1.35, 1.22);
-            body.add(leftMirrorHead);
-
-            const leftMirrorGlass = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.1, 0.02), glassMat);
-            leftMirrorGlass.position.set(0.72, 1.35, 1.22);
-            body.add(leftMirrorGlass);
-
-            // 后视镜（右侧）
-            const rightMirrorArm = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.05, 0.05), plasticMat(partColors.body));
-            rightMirrorArm.position.set(0.9, 1.35, -1.15);
-            body.add(rightMirrorArm);
-
-            const rightMirrorHead = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.12, 0.08), plasticMat(partColors.body));
-            rightMirrorHead.position.set(0.78, 1.35, -1.22);
-            body.add(rightMirrorHead);
-
-            const rightMirrorGlass = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.1, 0.02), glassMat);
-            rightMirrorGlass.position.set(0.72, 1.35, -1.22);
-            body.add(rightMirrorGlass);
-
-            const frontBumper = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.45, 1.98), plasticMat(0x1f2937));
-            frontBumper.position.set(2.33, 0.7, 0); // 顶面 y=0.7+0.225=0.925，与车头封板下部连接
-            body.add(frontBumper);
-
-            const rearBumper = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.45, 1.98), plasticMat(0x1f2937));
-            rearBumper.position.set(-2.32, 0.65, 0); // 顶面 y=0.65+0.225=0.875，与车尾封板下部连接
-            body.add(rearBumper);
-
-            // === 高尔夫 MK8.5 标志性前脸 ===
-            // 1. 贯穿式 LED 灯带（横贯前脸，连接两侧大灯）- 标志性设计
-            const ledLightBar = new THREE.Mesh(
-                new THREE.BoxGeometry(0.08, 0.04, 1.4),
-                new THREE.MeshStandardMaterial({
-                    color: 0xffffff, emissive: 0x99ddff, emissiveIntensity: 0.9,
-                    transparent: true, opacity: 0.95
-                })
-            );
-            ledLightBar.position.set(2.31, 1.22, 0); // 大灯上方
-            body.add(ledLightBar);
-
-            // 2. 锐利修长的大灯组（左侧）- 扁平化设计带角
-            const headlightHousingLeft = new THREE.Mesh(
-                new THREE.BoxGeometry(0.1, 0.16, 0.42),
-                plasticMat(0x0a0a0a)
-            );
-            headlightHousingLeft.position.set(2.31, 1.05, 0.7);
-            headlightHousingLeft.castShadow = true;
-            body.add(headlightHousingLeft);
-
-            const headlightLeft = new THREE.Mesh(
-                new THREE.BoxGeometry(0.08, 0.12, 0.38),
-                new THREE.MeshStandardMaterial({
-                    color: 0xeef4ff, emissive: 0xc4dcff, emissiveIntensity: 0.7,
-                    transparent: true, opacity: 0.95
-                })
-            );
-            headlightLeft.position.set(2.32, 1.05, 0.7);
-            body.add(headlightLeft);
-
-            // 右侧大灯
-            const headlightHousingRight = new THREE.Mesh(
-                new THREE.BoxGeometry(0.1, 0.16, 0.42),
-                plasticMat(0x0a0a0a)
-            );
-            headlightHousingRight.position.set(2.31, 1.05, -0.7);
-            headlightHousingRight.castShadow = true;
-            body.add(headlightHousingRight);
-
-            const headlightRight = new THREE.Mesh(
-                new THREE.BoxGeometry(0.08, 0.12, 0.38),
-                new THREE.MeshStandardMaterial({
-                    color: 0xeef4ff, emissive: 0xc4dcff, emissiveIntensity: 0.7,
-                    transparent: true, opacity: 0.95
-                })
-            );
-            headlightRight.position.set(2.32, 1.05, -0.7);
-            body.add(headlightRight);
-
-            // 3. 大众标志性水平格栅条 - VW 高尔夫前格栅
-            for (let i = -1; i <= 1; i++) {
-                const grilleSlats = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.05, 0.02, 1.5),
-                    metalMat(0x1a1a1a)
-                );
-                grilleSlats.position.set(2.32, 0.95 + i * 0.06, 0);
-                body.add(grilleSlats);
-            }
-
-            // 中央进气格栅（更大更运动化）
-            const grille = new THREE.Mesh(
-                new THREE.BoxGeometry(0.05, 0.3, 1.4),
-                metalMat(0x0a0a0a)
-            );
-            grille.position.set(2.32, 0.85, 0);
-            body.add(grille);
-
-            // 4. 雾灯区域（两侧下部进气口）
-            const lowerIntakeLeft = new THREE.Mesh(
-                new THREE.BoxGeometry(0.12, 0.18, 0.5),
-                plasticMat(0x0a0a0a)
-            );
-            lowerIntakeLeft.position.set(2.32, 0.55, 0.6);
-            body.add(lowerIntakeLeft);
-            const lowerIntakeRight = new THREE.Mesh(
-                new THREE.BoxGeometry(0.12, 0.18, 0.5),
-                plasticMat(0x0a0a0a)
-            );
-            lowerIntakeRight.position.set(2.32, 0.55, -0.6);
-            body.add(lowerIntakeRight);
-
-            // === 高尔夫 MK8.5 标志性尾灯 ===
-            // L形 LED 尾灯（更扁平、带角）
-            const taillightHousingLeft = new THREE.Mesh(
-                new THREE.BoxGeometry(0.1, 0.18, 0.32),
-                plasticMat(0x0a0a0a)
-            );
-            taillightHousingLeft.position.set(-2.21, 1.18, 0.72);
-            taillightHousingLeft.castShadow = true;
-            body.add(taillightHousingLeft);
-
-            const taillightLeft = new THREE.Mesh(
-                new THREE.BoxGeometry(0.08, 0.14, 0.28),
-                new THREE.MeshStandardMaterial({
-                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.8,
-                    transparent: true, opacity: 0.95
-                })
-            );
-            taillightLeft.position.set(-2.22, 1.18, 0.72);
-            body.add(taillightLeft);
-
-            // L 形 LED 灯带（沿后翼子板延伸）- 标志性 Golf 特征
-            const taillightStripLeft = new THREE.Mesh(
-                new THREE.BoxGeometry(0.05, 0.04, 0.6),
-                new THREE.MeshStandardMaterial({
-                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.6
-                })
-            );
-            taillightStripLeft.position.set(-2.22, 1.08, 0.45);
-            body.add(taillightStripLeft);
-
-            const taillightHousingRight = new THREE.Mesh(
-                new THREE.BoxGeometry(0.1, 0.18, 0.32),
-                plasticMat(0x0a0a0a)
-            );
-            taillightHousingRight.position.set(-2.21, 1.18, -0.72);
-            taillightHousingRight.castShadow = true;
-            body.add(taillightHousingRight);
-
-            const taillightRight = new THREE.Mesh(
-                new THREE.BoxGeometry(0.08, 0.14, 0.28),
-                new THREE.MeshStandardMaterial({
-                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.8,
-                    transparent: true, opacity: 0.95
-                })
-            );
-            taillightRight.position.set(-2.22, 1.18, -0.72);
-            body.add(taillightRight);
-
-            const taillightStripRight = new THREE.Mesh(
-                new THREE.BoxGeometry(0.05, 0.04, 0.6),
-                new THREE.MeshStandardMaterial({
-                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.6
-                })
-            );
-            taillightStripRight.position.set(-2.22, 1.08, -0.45);
-            body.add(taillightStripRight);
-
-            // 5. 贯穿式尾灯灯条（连接两侧）- MK8.5 标志性
-            const taillightBar = new THREE.Mesh(
-                new THREE.BoxGeometry(0.06, 0.03, 1.4),
-                new THREE.MeshStandardMaterial({
-                    color: 0xff2020, emissive: 0xff3333, emissiveIntensity: 0.5,
-                    transparent: true, opacity: 0.8
-                })
-            );
-            taillightBar.position.set(-2.22, 1.18, 0);
-            body.add(taillightBar);
-
-            // === 高尔夫 MK8.5 标志性特征 ===
-            // C 柱 - 高尔夫经典折线（C-pillar golf signature kink）
-            const cPillarGolf = new THREE.Mesh(
-                new THREE.BoxGeometry(0.05, 0.35, 0.05),
-                plasticMat(0x1a1a1a)
-            );
-            cPillarGolf.position.set(-1.0, 1.65, 0.92);
-            body.add(cPillarGolf);
-            const cPillarGolfR = cPillarGolf.clone();
-            cPillarGolfR.position.z = -0.92;
-            body.add(cPillarGolfR);
-
-            // 车顶扰流板（车尾顶部小尾翼）- 运动化高尔夫特征
-            const roofSpoiler = new THREE.Mesh(
-                new THREE.BoxGeometry(0.4, 0.05, 1.8),
-                plasticMat(0x1a1a1a)
-            );
-            roofSpoiler.position.set(-1.85, 1.99, 0);
-            body.add(roofSpoiler);
-
-            // 车身侧裙 - 降低视觉重心，让车看起来更贴地
-            const sideSkirtLeft = new THREE.Mesh(
-                new THREE.BoxGeometry(3.2, 0.12, 0.06),
-                plasticMat(0x0a0a0a)
-            );
-            sideSkirtLeft.position.set(0, 0.32, 1.0);
-            body.add(sideSkirtLeft);
-            const sideSkirtRight = sideSkirtLeft.clone();
-            sideSkirtRight.position.z = -1.0;
-            body.add(sideSkirtRight);
-
-            // 大众 VW Logo（前格栅中央，发光效果）
-            const vwLogo = new THREE.Mesh(
-                new THREE.CircleGeometry(0.1, 32),
-                new THREE.MeshStandardMaterial({
-                    color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.4,
-                    metalness: 0.6, roughness: 0.3
-                })
-            );
-            vwLogo.position.set(2.32, 1.22, 0);
-            vwLogo.rotation.y = Math.PI / 2;
-            body.add(vwLogo);
-
-            // 进气口装饰条（蜂窝状下格栅装饰）
-            const lowerGrille = new THREE.Mesh(
-                new THREE.BoxGeometry(0.05, 0.18, 1.0),
-                new THREE.MeshStandardMaterial({
-                    color: 0x0a0a0a, metalness: 0.7, roughness: 0.3
-                })
-            );
-            lowerGrille.position.set(2.32, 0.7, 0);
-            body.add(lowerGrille);
-
-            // 车顶天线（鲨鱼鳍）
-            const sharkFin = new THREE.Mesh(
-                new THREE.BoxGeometry(0.18, 0.06, 0.12),
-                plasticMat(0x0a0a0a)
-            );
-            sharkFin.position.set(-0.7, 2.22, 0);
-            body.add(sharkFin);
-
-            body.visible = false;
-            body.userData.originalPosition = body.position.clone();
-            parts.body = body;
-            scene.add(body);
-
-            // 13. 防火墙
-            const firewall = new THREE.Group();
-            const firewallPanel = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.75, 1.8), plasticMat(0x374151));
-            firewallPanel.position.set(0.5, 0.745, 0);
-            firewallPanel.castShadow = true;
-            firewall.add(firewallPanel);
-
-            const floorFirewall = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.06, 1.8), plasticMat(0x374151));
-            floorFirewall.position.set(0.3, 0.525, 0);
-            floorFirewall.castShadow = true;
-            firewall.add(floorFirewall);
-
-            firewall.visible = false;
-            firewall.userData.originalPosition = firewall.position.clone();
-            parts.firewall = firewall;
-            scene.add(firewall);
-
-            // 14. 燃油系统
-            const fuelSystem = new THREE.Group();
-            const fuelTank = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.3, 1.2), plasticMat(partColors.fuelSystem));
-            fuelTank.position.set(-1.5, 0.425, 0);
-            fuelTank.castShadow = true;
-            fuelSystem.add(fuelTank);
-
-            const fuelPump = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.06, 0.2, 12), plasticMat(0x718096));
-            fuelPump.position.set(-1.5, 0.58, 0.4);
-            fuelSystem.add(fuelPump);
-
-            const fuelFilter = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.15, 12), metalMat(0x4a5568));
-            fuelFilter.position.set(0.5, 0.45, -0.8);
-            fuelSystem.add(fuelFilter);
-
-            fuelSystem.visible = false;
-            fuelSystem.userData.originalPosition = fuelSystem.position.clone();
-            parts.fuelSystem = fuelSystem;
-            scene.add(fuelSystem);
-
-            // 15. 电气系统
-            const electricalSystem = new THREE.Group();
-            const battery = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.18, 0.2), plasticMat(0x22543d));
-            battery.position.set(-1.0, 0.425, -0.8);
-            battery.castShadow = true;
-            electricalSystem.add(battery);
-
-            const ecu = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.1, 0.2), plasticMat(0x4a5568));
-            ecu.position.set(1.6, 1.0, 0);
-            electricalSystem.add(ecu);
-
-            const fuseBox = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.1, 0.1), plasticMat(0x4a5568));
-            fuseBox.position.set(0.6, 1.3, 0.7);
-            electricalSystem.add(fuseBox);
-
-            const alternator = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.15, 16), metalMat(0x4a5568));
-            alternator.position.set(1.9, 0.85, -0.3);
-            electricalSystem.add(alternator);
-
-            electricalSystem.visible = false;
-            electricalSystem.userData.originalPosition = electricalSystem.position.clone();
-            parts.electricalSystem = electricalSystem;
-            scene.add(electricalSystem);
-
-            // 16. 空调系统
-            const acSystem = new THREE.Group();
-            const acCompressor = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.25, 16), metalMat(partColors.acSystem));
-            acCompressor.position.set(2.0, 0.75, -0.5);
-            acSystem.add(acCompressor);
-
-            const condenser = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.3, 0.5), metalMat(partColors.acSystem));
-            condenser.position.set(2.55, 0.65, 0);
-            acSystem.add(condenser);
-
-            const evaporator = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.1), plasticMat(0x718096));
-            evaporator.position.set(-0.3, 1.1, 0);
-            acSystem.add(evaporator);
-
-            acSystem.visible = false;
-            acSystem.userData.originalPosition = acSystem.position.clone();
-            parts.acSystem = acSystem;
-            scene.add(acSystem);
-
-            // 17. 天窗
-            const sunroof = new THREE.Group();
-            const sunroofFrame = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.03, 0.8), plasticMat(0x1a1a1a));
-            sunroofFrame.position.set(-0.2, 2.15, 0);
-            sunroof.add(sunroofFrame);
-
-            const sunroofGlass = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.02, 0.7), glassMat);
-            sunroofGlass.position.set(-0.2, 2.16, 0);
-            sunroof.add(sunroofGlass);
-
-            const sunshade = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.015, 0.7), plasticMat(0x4a5568));
-            sunshade.position.set(-0.2, 2.14, 0);
-            sunroof.add(sunshade);
-
-            sunroof.visible = false;
-            sunroof.userData.originalPosition = sunroof.position.clone();
-            parts.sunroof = sunroof;
-            scene.add(sunroof);
-
-            // 18. 座椅（旋转90°，朝向车头方向）
-            const seats = new THREE.Group();
-            // 驾驶座
-            const driverSeatBase = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.55), plasticMat(partColors.seats));
-            driverSeatBase.position.set(-0.15, 0.575, 0.35); // 在底盘顶面y=0.425上
-            driverSeatBase.rotation.y = Math.PI / 2; // 旋转90°朝向前方
-            driverSeatBase.castShadow = true;
-            seats.add(driverSeatBase);
-
-            const driverSeatBack = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.55, 0.1), plasticMat(partColors.seats));
-            driverSeatBack.position.set(-0.45, 1.0, 0.35); // 往后移动
-            driverSeatBack.rotation.y = Math.PI / 2;
-            driverSeatBack.rotation.z = 0; // 垂直不倾斜
-            driverSeatBack.castShadow = true;
-            seats.add(driverSeatBack);
-
-            const driverHeadrest = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.18, 0.12), plasticMat(partColors.seats));
-            driverHeadrest.position.set(-0.5, 1.365, 0.35); // 往后移动
-            driverHeadrest.rotation.y = Math.PI / 2;
-            driverHeadrest.rotation.z = 0; // 垂直不倾斜
-            seats.add(driverHeadrest);
-
-            // 副驾驶座
-            const passengerSeatBase = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.55), plasticMat(partColors.seats));
-            passengerSeatBase.position.set(-0.15, 0.575, -0.35);
-            passengerSeatBase.rotation.y = Math.PI / 2;
-            passengerSeatBase.castShadow = true;
-            seats.add(passengerSeatBase);
-
-            const passengerSeatBack = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.55, 0.1), plasticMat(partColors.seats));
-            passengerSeatBack.position.set(-0.45, 1.0, -0.35); // 往后移动
-            passengerSeatBack.rotation.y = Math.PI / 2;
-            passengerSeatBack.rotation.z = 0; // 垂直不倾斜
-            passengerSeatBack.castShadow = true;
-            seats.add(passengerSeatBack);
-
-            const passengerHeadrest = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.18, 0.12), plasticMat(partColors.seats));
-            passengerHeadrest.position.set(-0.5, 1.365, -0.35); // 往后移动
-            passengerHeadrest.rotation.y = Math.PI / 2;
-            passengerHeadrest.rotation.z = 0; // 垂直不倾斜
-            seats.add(passengerHeadrest);
-
-            // 后排座椅（短一点，靠背垂直）
-            const rearSeatBase = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.15, 1.0), plasticMat(partColors.seats)); // 缩短
-            rearSeatBase.position.set(-1.3, 0.575, 0);
-            rearSeatBase.castShadow = true;
-            seats.add(rearSeatBase);
-
-            const rearSeatBack = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.4, 0.08), plasticMat(partColors.seats)); // 缩短，降低高度，垂直
-            rearSeatBack.position.set(-1.65, 0.9, 0);
-            rearSeatBack.rotation.z = 0; // 垂直
-            rearSeatBack.castShadow = true;
-            seats.add(rearSeatBack);
-
-            seats.visible = false;
-            seats.userData.originalPosition = seats.position.clone();
-            parts.seats = seats;
-            scene.add(seats);
-
-            // 19. 方向盘（抬高到仪表盘上方，无转向柱，往前移动）
-            const steeringWheel = new THREE.Group();
-            const wheelRim = new THREE.Mesh(new THREE.TorusGeometry(0.25, 0.03, 8, 24), metalMat(partColors.steeringWheel));
-            wheelRim.rotation.x = Math.PI / 2;
-            wheelRim.rotation.z = 0.4;
-            wheelRim.position.set(0.15, 1.2, -0.55); // 降低高度，往车头方向移动
-            steeringWheel.add(wheelRim);
-
-            const spoke1 = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.025, 0.2), metalMat(partColors.steeringWheel));
-            spoke1.position.set(0.15, 1.2, -0.55);
-            spoke1.rotation.z = 0.4;
-            steeringWheel.add(spoke1);
-
-            const spoke2 = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.025, 0.2), metalMat(partColors.steeringWheel));
-            spoke2.position.set(0.15, 1.2, -0.55);
-            spoke2.rotation.z = 0.4 + Math.PI / 3;
-            steeringWheel.add(spoke2);
-
-            const spoke3 = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.025, 0.2), metalMat(partColors.steeringWheel));
-            spoke3.position.set(0.15, 1.2, -0.55);
-            spoke3.rotation.z = 0.4 - Math.PI / 3;
-            steeringWheel.add(spoke3);
-
-            const centerHub = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.035, 16), metalMat(0xf6e05e));
-            centerHub.position.set(0.15, 1.2, -0.55);
-            centerHub.rotation.x = Math.PI / 2;
-            steeringWheel.add(centerHub);
-
-            steeringWheel.visible = false;
-            steeringWheel.userData.originalPosition = steeringWheel.position.clone();
-            parts.steeringWheel = steeringWheel;
-            scene.add(steeringWheel);
-
-            // 12. 仪表盘（调低位置，往前移动）
-            const dashboard = new THREE.Group();
-            const dashBase = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.2, 1.5), plasticMat(partColors.dashboard));
-            dashBase.position.set(0.3, 1.05, 0); // 升高位置
-            dashBase.rotation.z = 0.1;
-            dashBase.castShadow = true;
-            dashboard.add(dashBase);
-
-            const speedometer = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.02, 32), new THREE.MeshStandardMaterial({
-                color: 0x48bb78, emissive: 0x48bb78, emissiveIntensity: 0.4
-            }));
-            speedometer.position.set(0.2, 1.075, 0.35);
-            speedometer.rotation.x = Math.PI / 2;
-            dashboard.add(speedometer);
-
-            const tachometer = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.02, 32), new THREE.MeshStandardMaterial({
-                color: 0xfc8181, emissive: 0xfc8181, emissiveIntensity: 0.4
-            }));
-            tachometer.position.set(0.2, 1.075, -0.35);
-            tachometer.rotation.x = Math.PI / 2;
-            dashboard.add(tachometer);
-
-            const radio = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.07, 0.2), plasticMat(0x1f2937));
-            radio.position.set(0.25, 0.965, 0);
-            dashboard.add(radio);
-
-            const acControls = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.05, 0.15), plasticMat(0x1f2937));
-            acControls.position.set(0.25, 0.925, 0);
-            dashboard.add(acControls);
-
-            const centerConsole = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.1, 0.25), plasticMat(partColors.dashboard));
-            centerConsole.position.set(-0.25, 0.595, 0);
-            centerConsole.castShadow = true;
-            dashboard.add(centerConsole);
-
-            const gearSelector = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.22, 0.1), metalMat(0x4a5568));
-            gearSelector.position.set(-0.35, 0.525, 0);
-            gearSelector.rotation.z = 0.1;
-            dashboard.add(gearSelector);
-
-            // 踏板（抬到防火墙上面，紧贴防火墙）
-            const brakePedal = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.15, 0.12), plasticMat(0x1f2937));
-            brakePedal.position.set(0.3, 0.945, -0.35);
-            brakePedal.rotation.z = 0.2;
-            dashboard.add(brakePedal);
-
-            const acceleratorPedal = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.12, 0.1), plasticMat(0x1f2937));
-            acceleratorPedal.position.set(0.3, 0.945, -0.15);
-            acceleratorPedal.rotation.z = 0.15;
-            dashboard.add(acceleratorPedal);
-
-            const clutchPedal = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.12, 0.1), plasticMat(0x1f2937));
-            clutchPedal.position.set(0.3, 0.945, -0.55);
-            clutchPedal.rotation.z = 0.15;
-            dashboard.add(clutchPedal);
-
-            dashboard.visible = false;
-            dashboard.userData.originalPosition = dashboard.position.clone();
-            parts.dashboard = dashboard;
-            scene.add(dashboard);
-
-            // 22. 音响系统
-            const audioSystem = new THREE.Group();
-            // 前左扬声器
-            const speakerFrontLeft = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.08, 16), plasticMat(partColors.audioSystem));
-            speakerFrontLeft.position.set(0.6, 1.05, 0.85);
-            audioSystem.add(speakerFrontLeft);
-
-            // 前右扬声器
-            const speakerFrontRight = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.08, 16), plasticMat(partColors.audioSystem));
-            speakerFrontRight.position.set(0.6, 1.05, -0.85);
-            audioSystem.add(speakerFrontRight);
-
-            // 后左扬声器
-            const speakerRearLeft = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.06, 16), plasticMat(partColors.audioSystem));
-            speakerRearLeft.position.set(-1.2, 0.95, 0.8);
-            audioSystem.add(speakerRearLeft);
-
-            // 后右扬声器
-            const speakerRearRight = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.06, 16), plasticMat(partColors.audioSystem));
-            speakerRearRight.position.set(-1.2, 0.95, -0.8);
-            audioSystem.add(speakerRearRight);
-
-            // 中置扬声器
-            const speakerCenter = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.08, 0.05, 12), plasticMat(partColors.audioSystem));
-            speakerCenter.position.set(0.3, 1.05, 0);
-            audioSystem.add(speakerCenter);
-
-            // 低音炮
-            const subwoofer = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.25, 0.35), plasticMat(partColors.audioSystem));
-            subwoofer.position.set(-1.6, 0.5, 0);
-            audioSystem.add(subwoofer);
-
-            // 功放
-            const amplifier = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.08, 0.35), plasticMat(0x1a1a1a));
-            amplifier.position.set(-1.7, 0.75, 0);
-            audioSystem.add(amplifier);
-
-            audioSystem.visible = false;
-            audioSystem.userData.originalPosition = audioSystem.position.clone();
-            parts.audioSystem = audioSystem;
-            scene.add(audioSystem);
-
-            // 给每个零件 group 打上 partName 标签（用于悬停检测）
-            Object.keys(parts).forEach(name => {
-                parts[name].userData.partName = name;
-                parts[name].traverse(child => {
-                    if (child.isMesh) {
-                        child.userData.partName = name;
-                    }
-                });
-            });
         }
 
         function setupUI() {
@@ -2401,14 +1922,18 @@
                     <div class="step-desc">${step.description}</div>
                     <div class="step-actions">
                         <button class="step-btn primary" data-index="${index}">▶️ 播放</button>
-                        <button class="step-btn" data-index="${index}">✅ 完成</button>
                     </div>
                 `;
+                // 点击步骤区域（不是按钮）时跳转
                 stepEl.addEventListener('click', (e) => {
-                    if (e.target.tagName !== 'BUTTON') selectStep(index);
+                    if (e.target.closest('.step-btn')) return;
+                    jumpToStep(index);
                 });
-                stepEl.querySelectorAll('button')[0].addEventListener('click', () => playStepAnimation(index));
-                stepEl.querySelectorAll('button')[1].addEventListener('click', () => completeCurrentStep(index));
+                // 点击播放按钮
+                stepEl.querySelector('.step-btn.primary').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    playStepAnimation(index);
+                });
                 stepsContainer.appendChild(stepEl);
             });
 
@@ -2435,6 +1960,15 @@
             
             if (part) {
                 part.visible = !part.visible;
+                
+                // 找到对应的装配步骤并切换所有零件的可见性
+                const step = assemblySteps.find(s => s.part === partName);
+                if (step) {
+                    step.meshes.forEach(mesh => {
+                        mesh.visible = part.visible;
+                    });
+                }
+                
                 chip.classList.toggle('active', part.visible);
                 chip.classList.toggle('hidden', !part.visible);
                 showNotification(part.visible ? `${chip.title} 已显示` : `${chip.title} 已隐藏`);
@@ -2451,58 +1985,122 @@
             document.getElementById('stepInfo').textContent = `${step.id}. ${step.title}`;
         }
 
+        function jumpToStep(targetIndex) {
+            if (targetIndex < 0 || targetIndex >= assemblySteps.length) return;
+            
+            // 停止自动演示
+            if (autoDemoInterval) {
+                clearInterval(autoDemoInterval);
+                autoDemoInterval = null;
+            }
+            
+            // 隐藏所有零件
+            assemblySteps.forEach((step, idx) => {
+                step.meshes.forEach((mesh) => {
+                    mesh.visible = false;
+                });
+            });
+            
+            // 显示目标步骤及之前所有步骤的零件（无动画，直接显示）
+            for (let i = 0; i <= targetIndex; i++) {
+                const step = assemblySteps[i];
+                step.meshes.forEach((mesh) => {
+                    mesh.visible = true;
+                    // 直接设置到目标位置
+                    if (mesh.userData.targetPos) {
+                        mesh.position.copy(mesh.userData.targetPos);
+                    }
+                    if (mesh.userData.targetRot) {
+                        mesh.rotation.copy(mesh.userData.targetRot);
+                    }
+                });
+                
+                // 更新步骤UI状态
+                const stepEl = document.getElementById(`step-${step.id}`);
+                if (stepEl) {
+                    stepEl.classList.add('completed');
+                    if (i === targetIndex) {
+                        stepEl.classList.add('active');
+                    }
+                }
+            }
+            
+            // 更新进度
+            completedStepsCount = targetIndex + 1;
+            document.getElementById('completedSteps').textContent = completedStepsCount;
+            document.getElementById('progressFill').style.width = `${((targetIndex + 1) / assemblySteps.length) * 100}%`;
+            
+            selectStep(targetIndex);
+        }
+
         function playStepAnimation(stepIndex) {
             selectStep(stepIndex);
             const step = assemblySteps[stepIndex];
-            const part = parts[step.part];
             
-            if (!part) return;
+            if (!step || step.meshes.length === 0) return;
 
             document.getElementById('welcomePanel').style.display = 'none';
-            part.visible = true;
-            
-            // 保存原始位置
-            const originalY = part.position.y;
-            part.position.y = originalY + 4;
-            part.scale.set(0.01, 0.01, 0.01);
 
-            // 动画显示
-            animatePartEntry(part, originalY);
-            document.getElementById(`part-${step.part}`).classList.add('active');
+            // 为该步骤的所有零件设置动画起点（从目标位置向外平移15个单位）
+            step.meshes.forEach((mesh) => {
+                mesh.visible = true;
+                
+                // 获取目标位置
+                const targetPos = mesh.userData.targetPos || mesh.position.clone();
+                
+                // 计算向外偏移方向（沿局部坐标轴向外15个单位）
+                const offsetDirection = new THREE.Vector3(
+                    targetPos.x !== 0 ? Math.sign(targetPos.x) : 1,
+                    targetPos.y !== 0 ? Math.sign(targetPos.y) : 1,
+                    targetPos.z !== 0 ? Math.sign(targetPos.z) : 1
+                ).normalize();
+                
+                // 设置动画起点（向外偏移15个单位）
+                const startPos = targetPos.clone().add(offsetDirection.multiplyScalar(15));
+                
+                // 保存起点位置用于动画
+                mesh.userData.animationStartPos = startPos;
+                mesh.position.copy(startPos);
+                mesh.rotation.copy(mesh.userData.targetRot || mesh.rotation.clone());
+            });
+
+            // 更新零件状态
+            if (parts[step.part]) {
+                parts[step.part].visible = true;
+            }
+            
+            // 执行归位动画
+            animatePartsToTarget(step.meshes);
+            
+            document.getElementById(`part-${step.part}`)?.classList.add('active');
             showNotification(`正在演示: ${step.title}`);
         }
 
-        function animatePartEntry(part, targetY) {
-            const startY = part.position.y;
-            const duration = 1000;
+        function animatePartsToTarget(meshes) {
+            const duration = 1200;
             const startTime = Date.now();
+            const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
             function animate() {
                 const elapsed = Date.now() - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
+                const eased = easeOutCubic(progress);
 
-                part.position.y = startY + (targetY - startY) * eased;
-                part.scale.setScalar(0.01 + 0.99 * eased);
+                meshes.forEach((mesh) => {
+                    const startPos = mesh.userData.animationStartPos;
+                    const targetPos = mesh.userData.targetPos;
+                    
+                    if (startPos && targetPos) {
+                        // 线性插值归位
+                        mesh.position.lerpVectors(startPos, targetPos, eased);
+                    }
+                });
 
-                if (progress < 1) requestAnimationFrame(animate);
-            }
-            animate();
-        }
-
-        function completeCurrentStep(stepIndex) {
-            const step = assemblySteps[stepIndex];
-            const stepEl = document.getElementById(`step-${step.id}`);
-            const part = parts[step.part];
-            
-            if (!stepEl.classList.contains('completed')) {
-                if (!part.visible) {
-                    playStepAnimation(stepIndex);
-                    setTimeout(() => markStepComplete(stepEl, step), 1200);
-                } else {
-                    markStepComplete(stepEl, step);
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
                 }
             }
+            animate();
         }
 
         function markStepComplete(stepEl, step) {
@@ -2521,12 +2119,26 @@
         }
 
         function resetView() {
+            // 重置所有装配步骤的零件状态
+            assemblySteps.forEach((step) => {
+                step.meshes.forEach((mesh) => {
+                    mesh.visible = false;
+                    // 重置到原始位置
+                    if (mesh.userData.targetPos) {
+                        mesh.position.copy(mesh.userData.targetPos);
+                    }
+                    if (mesh.userData.targetRot) {
+                        mesh.rotation.copy(mesh.userData.targetRot);
+                    }
+                    if (mesh.userData.targetScale) {
+                        mesh.scale.copy(mesh.userData.targetScale);
+                    }
+                });
+            });
+
+            // 重置 parts 对象状态
             Object.values(parts).forEach(part => {
                 part.visible = false;
-                if (part.userData?.originalPosition) {
-                    part.position.copy(part.userData.originalPosition);
-                    part.scale.set(1, 1, 1);
-                }
             });
 
             document.querySelectorAll('.part-chip').forEach(chip => {
@@ -2559,7 +2171,9 @@
             for (let i = 0; i < assemblySteps.length; i++) {
                 playStepAnimation(i);
                 await new Promise(resolve => setTimeout(resolve, 1500));
-                completeCurrentStep(i);
+                const step = assemblySteps[i];
+                const stepEl = document.getElementById(`step-${step.id}`);
+                if (stepEl) markStepComplete(stepEl, step);
                 await new Promise(resolve => setTimeout(resolve, 400));
             }
         }
